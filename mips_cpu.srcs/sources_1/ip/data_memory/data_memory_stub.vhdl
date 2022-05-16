@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
 -- Date        : Fri May  6 14:10:20 2022
 -- Host        : DESKTOP-AK5GC2F running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub
---               C:/Users/Froster/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/data_memory_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top data_memory -prefix
+--               data_memory_ data_memory_stub.vhdl
 -- Design      : data_memory
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7a100tfgg484-1

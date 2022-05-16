@@ -3,3 +3,5 @@ mips_cpu.runs
 mips_cpu.cache
 mips_cpu.hw
 mips_cpu.ip_user_files
+vivado.jou
+vivado.log

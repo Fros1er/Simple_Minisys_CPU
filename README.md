@@ -6,6 +6,8 @@
 
 顺便，这玩意的指令长度实际是17位...因为不想开太大的block mem存指令
 
+.ktext在0x4000，是跟着mars来的。由于这玩意没有内核态所以直接当text处理了...
+
 # 进度
 ## Basics
 ### Instructions
@@ -51,40 +53,45 @@
 ### IO
 - [ ] Seg tubes
 - [ ] switches
-- [ ] Serial
+- [ ] UART Download
   
 ## Bonus
 
 ### Basics
-- [ ] minisys_extended to coe compiler
+- [x] ~~minisys_extended to coe compiler~~ Use mars instead
 - [ ] c to minisys_extended compiler (opt)
 
 ### Registers
-- [ ] Vaddr $8 (opt)
-- [ ] Status $12 (opt)
-- [ ] Cause $13 4'b0 (exec code only)
-- [ ] EPC $14
+- [x] EPC $14
 
 ### Instructions
 
 #### Exception (.ktext at 18180)
-- [ ] mtc0 010000 00100 rt rd 11'0 move rt to rd(cop0)
-- [ ] mfc0 010000 00000 rt rd 11'0 move rd(cop0) to rt
-- [ ] teq 6'b0 rs rt 10'b0 110100
-- [ ] tne 6'b0 rs rt 10'b0 110110
-- [ ] teqi 000001 rs 01100 immediate
-- [ ] tnei 000001 rs 01110 immediate
-- [ ] eret 010000 1 19'0 011000
-- [ ] syscall 6'b0 20'0 001100 (opt)
+- [x] mtc0 010000 00100 rt rd 11'0 move rt to rd(cop0)
+- [x] mfc0 010000 00000 rt rd 11'0 move rd(cop0) to rt
+- [x] teq 6'b0 rs rt 10'b0 110100
+- [x] tne 6'b0 rs rt 10'b0 110110
+- [x] teqi 000001 rs 01100 immediate
+- [x] tnei 000001 rs 01110 immediate
+- [x] eret 010000 1 19'0 011000
 
-#### additional
-- [ ] IVT
-- [ ] coproc0
+### About Exception
+- [ ] systick
+- [ ] fault
+- [x] trap
+- [ ] external
+- [ ] NVIC!
+
+### IVT ktext里直接写jump模拟
+- [ ] systick_handler 0x4180
+- [ ] usagefault_handler 0x4184
+- [ ] trap_handler 0x4188
+- [ ] exti0_handler * 6
 
 ### IO
 - [ ] GPIO
-- [ ] Leds (opt)
-- [ ] keyboard (opt)
+- [ ] LED1 拨码开关1 按键开关1 键盘1 数码管1 EJTAG1 共计6bytes
 
 ### Programs (opt)
-- [ ] servo motor
+- [ ] serial echo server 单独写个模块用来搞时钟？
+- [ ] calculator

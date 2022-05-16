@@ -4,7 +4,9 @@ module ifetch(
     input clk,
     input rst,
     input [31:0] result,
-    output alu_en,
+    input is_interrupt,
+    input [3:0] cause,
+    output alu_en, is_trap, is_eret, is_kernel,
     output [1:0] alu_type, // 01 R 00 I 10 coproc1
     output [4:0] rs,
     output [4:0] rt,
@@ -18,19 +20,20 @@ module ifetch(
     output [31:0] pcdiv4sim,
     output [31:0] instruction
 );
-    
+    reg kernel_mode;
     reg[31:0] pc = 32'b0;
     wire[31:0] next_pc;
-    wire is_trap;
     
     assign pc_sim = pc;
     assign pcdiv4sim = pc >> 2;
+    assign is_eret = instruction == 32'h42000018;
+    assign is_kernel = kernel_mode;
     
     inst_memory mem(.addra(pc >> 2), .clka(clk), .douta(instruction));
     
     assign alu_en = instruction[31:26] != 6'b00_0010 && 
                     instruction[31:26] != 6'b00_0011 &&
-                    instruction[31:26] != 6'b01_0000; // coproc0
+                    !(instruction[31:26] == 6'b01_0000 && !is_eret); // coproc0
     assign alu_type = (instruction[31:26] == 6'b00_0000) ? 2'b01 :
                       (instruction[31:26] == 6'b01_0000) ? 2'b10 : 2'b00;
     assign funct = instruction[5:0];
@@ -46,17 +49,19 @@ module ifetch(
     
     always @(negedge clk) begin
         return_addr <= pc + 8;
-        if (instruction[31:28] == 4'b00_01 && result[0] == 1) begin //bne or beq
+        if (is_interrupt) begin // teq, tne, teqi, tnei
+            kernel_mode = 1;
+            pc <= (32'h4180 + {cause, 2'b00});
+        end
+        else if (instruction[31:28] == 4'b00_01 && result[0] == 1) begin //bne or beq
             pc <= next_pc + {{14{instruction[15]}}, instruction[15:0], 2'b00};
         end
         else if (instruction[31:27] == 6'b00_001) begin //jump and jal
             pc <= {next_pc[31:28], instruction[25:0], 2'b00};
         end
-        else if (instruction[31:26] == 6'b00_0000 && instruction[5:0] == 6'b00_1000) begin // jr
+        else if ((instruction[31:26] == 6'b00_0000 && instruction[5:0] == 6'b00_1000) || is_eret) begin // jr && eret
+            if (is_eret) kernel_mode = 0;
             pc <= result;
-        end
-        else if (is_trap) begin // teq, tne, teqi, tnei
-            pc <= result ? 'h80000000 : next_pc;
         end
         else begin
             pc <= next_pc;
@@ -64,6 +69,7 @@ module ifetch(
     end
     
     always @(negedge rst) begin
+        kernel_mode = 0;
         pc = 32'b0;
     end
 

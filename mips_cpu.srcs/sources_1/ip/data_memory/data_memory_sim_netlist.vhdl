@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
--- Date        : Fri May  6 14:10:21 2022
+-- Date        : Fri May  6 14:10:20 2022
 -- Host        : DESKTOP-AK5GC2F running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               C:/Users/Froster/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/data_memory_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top data_memory -prefix
+--               data_memory_ data_memory_sim_netlist.vhdl
 -- Design      : data_memory
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -19,8 +19,6 @@ entity data_memory_bindec is
     ena_array : out STD_LOGIC_VECTOR ( 5 downto 0 );
     addra : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of data_memory_bindec : entity is "bindec";
 end data_memory_bindec;
 
 architecture STRUCTURE of data_memory_bindec is
@@ -144,8 +142,6 @@ entity data_memory_blk_mem_gen_mux is
     \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_43\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_44\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of data_memory_blk_mem_gen_mux : entity is "blk_mem_gen_mux";
 end data_memory_blk_mem_gen_mux;
 
 architecture STRUCTURE of data_memory_blk_mem_gen_mux is
@@ -1142,8 +1138,6 @@ entity data_memory_blk_mem_gen_prim_wrapper_init is
     dina : in STD_LOGIC_VECTOR ( 0 to 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of data_memory_blk_mem_gen_prim_wrapper_init : entity is "blk_mem_gen_prim_wrapper_init";
 end data_memory_blk_mem_gen_prim_wrapper_init;
 
 architecture STRUCTURE of data_memory_blk_mem_gen_prim_wrapper_init is
@@ -8507,8 +8501,6 @@ entity data_memory_blk_mem_gen_prim_width is
     dina : in STD_LOGIC_VECTOR ( 0 to 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of data_memory_blk_mem_gen_prim_width : entity is "blk_mem_gen_prim_width";
 end data_memory_blk_mem_gen_prim_width;
 
 architecture STRUCTURE of data_memory_blk_mem_gen_prim_width is
@@ -9386,8 +9378,6 @@ entity data_memory_blk_mem_gen_generic_cstr is
     dina : in STD_LOGIC_VECTOR ( 31 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of data_memory_blk_mem_gen_generic_cstr : entity is "blk_mem_gen_generic_cstr";
 end data_memory_blk_mem_gen_generic_cstr;
 
 architecture STRUCTURE of data_memory_blk_mem_gen_generic_cstr is
@@ -10298,8 +10288,6 @@ entity data_memory_blk_mem_gen_top is
     dina : in STD_LOGIC_VECTOR ( 31 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of data_memory_blk_mem_gen_top : entity is "blk_mem_gen_top";
 end data_memory_blk_mem_gen_top;
 
 architecture STRUCTURE of data_memory_blk_mem_gen_top is
@@ -10325,8 +10313,6 @@ entity data_memory_blk_mem_gen_v8_4_1_synth is
     dina : in STD_LOGIC_VECTOR ( 31 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of data_memory_blk_mem_gen_v8_4_1_synth : entity is "blk_mem_gen_v8_4_1_synth";
 end data_memory_blk_mem_gen_v8_4_1_synth;
 
 architecture STRUCTURE of data_memory_blk_mem_gen_v8_4_1_synth is
@@ -10556,8 +10542,6 @@ entity data_memory_blk_mem_gen_v8_4_1 is
   attribute C_WRITE_WIDTH_B of data_memory_blk_mem_gen_v8_4_1 : entity is 32;
   attribute C_XDEVICEFAMILY : string;
   attribute C_XDEVICEFAMILY of data_memory_blk_mem_gen_v8_4_1 : entity is "artix7";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of data_memory_blk_mem_gen_v8_4_1 : entity is "blk_mem_gen_v8_4_1";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of data_memory_blk_mem_gen_v8_4_1 : entity is "yes";
 end data_memory_blk_mem_gen_v8_4_1;
