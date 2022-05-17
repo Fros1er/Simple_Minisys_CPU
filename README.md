@@ -67,8 +67,8 @@
 ### Instructions
 
 #### Exception (.ktext at 18180)
-- [x] mtc0 010000 00100 rt rd 11'0 move rt to rd(cop0)
-- [x] mfc0 010000 00000 rt rd 11'0 move rd(cop0) to rt
+- [x] ~~mtc0 010000 00100 rt rd 11'0 move rt to rd(cop0)~~
+- [x] ~~mfc0 010000 00000 rt rd 11'0 move rd(cop0) to rt~~
 - [x] teq 6'b0 rs rt 10'b0 110100
 - [x] tne 6'b0 rs rt 10'b0 110110
 - [x] teqi 000001 rs 01100 immediate
@@ -80,7 +80,7 @@
 - [ ] fault
 - [x] trap
 - [ ] external
-- [ ] NVIC!
+- [ ] NVIC, without custom priority...
 
 ### IVT ktext里直接写jump模拟
 - [ ] systick_handler 0x4180

@@ -2,7 +2,7 @@
 
 module alu(
     input alu_en,
-    input[1:0] type, // 1 for R, 0 for I
+    input[1:0] alu_type, // 1 for R, 0 for I
     input[5:0] opcode,
     input[5:0] funct,
     input[4:0] rt, // for teqi & tnei
@@ -19,16 +19,16 @@ wire[31:0] zeroextimm;
 assign signextimm = {{16{immediate[15]}}, immediate};
 assign zeroextimm = {16'b0, immediate};
 
-assign is_fault = (type == 2'b01 && ((funct == 6'b10_0000 && (~(rs_val[31] ^ rt_val[31]) & (rs_val[31] ^ result[31]))) ||
+assign is_fault = (alu_type == 2'b01 && ((funct == 6'b10_0000 && (~(rs_val[31] ^ rt_val[31]) & (rs_val[31] ^ result[31]))) ||
                                     (funct == 6'b10_0010 && ((rs_val[31] ^ rt_val[31]) & (rs_val[31] ^ result[31]))))) ||
-                  (type == 2'b00 && opcode == 6'b00_1000 && (~(rs_val[31] ^ signextimm[31]) & (rs_val[31] ^ result[31])));
+                  (alu_type == 2'b00 && opcode == 6'b00_1000 && (~(rs_val[31] ^ signextimm[31]) & (rs_val[31] ^ result[31])));
                    
 //(type == 2'b01 && (funct == 6'b10_0000 || funct == 6'b10_0010)) || (type == 2'b00 && opcode == 6'b00_1000) ? 
 //                  1 : 0;
 
 always @(*) begin
     if (alu_en) begin
-        if (type == 2'b01) begin
+        if (alu_type == 2'b01) begin
             case(funct)
                 6'b00_0000: result = rt_val << shamt; // sll
                 6'b00_0010: result = rt_val >> shamt; // srl
@@ -52,7 +52,7 @@ always @(*) begin
                 default: result = 0;
             endcase
         end 
-        else if (type == 2'b00) begin
+        else if (alu_type == 2'b00) begin
             case (opcode)
                 6'b00_0001: result = (rt == 5'b01100) ? rs_val == zeroextimm : // teqi
                                      (rt == 5'b01110) ? rs_val != zeroextimm : 0; // tnei
@@ -68,9 +68,6 @@ always @(*) begin
                 6'b00_1111: result = {immediate, 16'b0}; // lui
                 default: result = 0;
             endcase
-        end
-        else if (type == 2'b10) begin
-            result = rs_val; //eret
         end
     end
     else begin

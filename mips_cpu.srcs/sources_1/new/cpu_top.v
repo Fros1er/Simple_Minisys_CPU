@@ -1,38 +1,18 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 2022/05/16 17:16:49
-// Design Name: 
-// Module Name: cpu_top
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module cpu_top(
 //        input sys_clk, rst,
-    output[31:0] gpio_a, gpio_b, gpio_c, gpio_d, gpio_e, gpio_f
+    inout[31:0] gpio_a, gpio_b, gpio_c, gpio_d, gpio_e, gpio_f
 );
     
     reg sys_clk;
     reg rst;
     
-    wire clk, uart_clk, systick_clk, rd_write_enable, rt_write_enable, alu_en, mem_write_en, io_write_en, is_sw, is_io_target, is_trap, is_usage_fault, interrupt, is_eret, is_kernel;
+    wire clk, uart_clk, systick_clk, rd_write_enable, rt_write_enable, alu_en, mem_write_en, io_write_en, is_sw, is_io_target, is_usage_fault, interrupt;
     wire [1:0] alu_type;
     
     
-    wire[31:0] pc, cause_sim, epc_sim, next_pc_sim, instruction_sim, seg_sim;
+    wire[31:0] pc, epc_sim, next_pc_sim, instruction_sim, seg_sim;
     
     wire[4:0] rd, rs, rt, shamt;
     wire[5:0] funct, opcode;
@@ -42,8 +22,7 @@ module cpu_top(
     wire[31:0] result, return_addr;
     wire[31:0] mem_access_target, mem_write_val, mem_io_read_val, mem_read_val, io_read_val;
     
-    reg pending_interrupt;
-    reg [3:0] cause;
+    reg[8:0] pending_interrupts;
     
     assign reg_write_val = (opcode == 6'b10_0011) ? mem_io_read_val : 
                           (opcode == 6'b00_0011) ? return_addr : result;
@@ -59,7 +38,7 @@ module cpu_top(
     assign io_access_target = mem_access_target[9:0];
     assign mem_io_read_val = is_io_target ? io_read_val : mem_read_val;
     
-    assign interrupt = !is_kernel && ((is_trap && result) || is_usage_fault || pending_interrupt);
+    // assign interrupt = ((is_trap && result) || is_usage_fault || pending_interrupt);
 //    assign interrupt = !kernel_mode && ((is_trap && result) || is_usage_fault);
     
     wire clk_t;
@@ -77,12 +56,8 @@ module cpu_top(
     ifetch i_fetch(
        .clk(clk),
        .rst(rst),
-       .is_interrupt(interrupt),
-       .cause((pending_interrupt) ? cause : (is_trap ? 2 : (is_usage_fault ? 1 : 0))),
        .result(result),
        .alu_en(alu_en),
-       .is_trap(is_trap),
-       .is_kernel(is_kernel),
        .alu_type(alu_type), // 1 R 0 I
        .rs(rs),
        .rt(rt),
@@ -93,8 +68,7 @@ module cpu_top(
        .opcode(opcode),
        .return_addr(return_addr),
        .pc_sim(pc),
-       .instruction(instruction_sim),
-       .is_eret(is_eret)
+       .instruction(instruction_sim)
     );
     registers regs(
        .clk(clk),
@@ -104,10 +78,8 @@ module cpu_top(
        .rd(rd),
        .rd_write_enable(rd_write_enable),
        .rt_write_enable(rt_write_enable),
-       .move_enable(alu_type == 2'b10 && rs[4] != 1), //coproc0 && not mfc, mtc
-       .move_direction(rs == 5'b00100), // mtc0 1 mfc0 0
-       .is_coproc(alu_type == 2'b10),
-       .is_interrupt(is_trap && result),
+    //    .move_enable(alu_type == 2'b10 && rs[4] != 1), //coproc0 && not mfc, mtc
+    //    .move_direction(rs == 5'b00100), // mtc0 1 mfc0 0
        .write_val(reg_write_val),
        .pc(pc),
        .rs_val(rs_val),
@@ -116,7 +88,7 @@ module cpu_top(
     );
     alu alu_a(
        .alu_en(alu_en),
-       .type(alu_type), // 1 for R, 0 for I
+       .alu_type(alu_type), // 1 for R, 0 for I
        .opcode(opcode),
        .funct(funct),
        .rt(rt),
@@ -151,20 +123,16 @@ module cpu_top(
        .gpio_f(gpio_f)
     );
     
-    always @(posedge clk) begin
-        if (is_eret) begin 
-            pending_interrupt = 0;
-        end
-    end
-    
     always @(posedge systick_clk) begin
-        pending_interrupt = 1;
-        cause = 0;
+        pending_interrupt[0] = 1;
+    end
+
+    always @(negedge clk) begin
+        pending_interrupt <= 0;
     end
     
     always @(negedge rst) begin
-        pending_interrupt = 0;
-        cause = 0;
+        pending_interrupt <= 0;
     end
     
     initial begin 
