@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
 -- Date        : Tue May 17 20:22:17 2022
 -- Host        : DESKTOP-AK5GC2F running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/inst_memory_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top inst_memory -prefix
+--               inst_memory_ inst_memory_sim_netlist.vhdl
 -- Design      : inst_memory
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -19,8 +19,6 @@ entity inst_memory_bindec is
     ena_array : out STD_LOGIC_VECTOR ( 0 to 0 );
     addra : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of inst_memory_bindec : entity is "bindec";
 end inst_memory_bindec;
 
 architecture STRUCTURE of inst_memory_bindec is
@@ -53,8 +51,6 @@ entity inst_memory_blk_mem_gen_mux is
     \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC_VECTOR ( 4 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of inst_memory_blk_mem_gen_mux : entity is "blk_mem_gen_mux";
 end inst_memory_blk_mem_gen_mux;
 
 architecture STRUCTURE of inst_memory_blk_mem_gen_mux is
@@ -491,8 +487,6 @@ entity inst_memory_blk_mem_gen_prim_wrapper_init is
     dina : in STD_LOGIC_VECTOR ( 8 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of inst_memory_blk_mem_gen_prim_wrapper_init : entity is "blk_mem_gen_prim_wrapper_init";
 end inst_memory_blk_mem_gen_prim_wrapper_init;
 
 architecture STRUCTURE of inst_memory_blk_mem_gen_prim_wrapper_init is
@@ -1765,8 +1759,6 @@ entity inst_memory_blk_mem_gen_prim_width is
     dina : in STD_LOGIC_VECTOR ( 8 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of inst_memory_blk_mem_gen_prim_width : entity is "blk_mem_gen_prim_width";
 end inst_memory_blk_mem_gen_prim_width;
 
 architecture STRUCTURE of inst_memory_blk_mem_gen_prim_width is
@@ -1913,8 +1905,6 @@ entity inst_memory_blk_mem_gen_generic_cstr is
     dina : in STD_LOGIC_VECTOR ( 31 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of inst_memory_blk_mem_gen_generic_cstr : entity is "blk_mem_gen_generic_cstr";
 end inst_memory_blk_mem_gen_generic_cstr;
 
 architecture STRUCTURE of inst_memory_blk_mem_gen_generic_cstr is
@@ -2161,8 +2151,6 @@ entity inst_memory_blk_mem_gen_top is
     dina : in STD_LOGIC_VECTOR ( 31 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of inst_memory_blk_mem_gen_top : entity is "blk_mem_gen_top";
 end inst_memory_blk_mem_gen_top;
 
 architecture STRUCTURE of inst_memory_blk_mem_gen_top is
@@ -2188,8 +2176,6 @@ entity inst_memory_blk_mem_gen_v8_4_1_synth is
     dina : in STD_LOGIC_VECTOR ( 31 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of inst_memory_blk_mem_gen_v8_4_1_synth : entity is "blk_mem_gen_v8_4_1_synth";
 end inst_memory_blk_mem_gen_v8_4_1_synth;
 
 architecture STRUCTURE of inst_memory_blk_mem_gen_v8_4_1_synth is
@@ -2419,8 +2405,6 @@ entity inst_memory_blk_mem_gen_v8_4_1 is
   attribute C_WRITE_WIDTH_B of inst_memory_blk_mem_gen_v8_4_1 : entity is 32;
   attribute C_XDEVICEFAMILY : string;
   attribute C_XDEVICEFAMILY of inst_memory_blk_mem_gen_v8_4_1 : entity is "artix7";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of inst_memory_blk_mem_gen_v8_4_1 : entity is "blk_mem_gen_v8_4_1";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of inst_memory_blk_mem_gen_v8_4_1 : entity is "yes";
 end inst_memory_blk_mem_gen_v8_4_1;

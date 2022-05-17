@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module ifetch(
-    input clk,
+    input clk, nvic_clk,
     input rst,
     input [31:0] result,
     input [8:0] pending_interrupts,
@@ -19,7 +19,8 @@ module ifetch(
     output [31:0] instruction,
     output need_exception_jump,
     output [31:0] target_addr,
-    output[8:0] int_en
+    output[8:0] int_en, arr,
+    output[3:0]curr, next
 );
     reg ready;
     reg[31:0] pc;
@@ -57,13 +58,17 @@ module ifetch(
     //wire [31:0] target_addr;
     nvic nvic_t(
         .clk(clk),
+        .nvic_clk(nvic_clk),
         .rst(rst),
+        .ready(ready),
         .next_pc(next_pc),
         .arriving_interrupts(pending_interrupts | {1'b0, is_trap, 7'b0}),
         .is_eret(is_eret),
         .need_jump(need_exception_jump),
         .target_addr(target_addr),
-        .int_en(int_en)
+        .int_en(int_en),
+        .arr(arr),
+        .curr(curr),.next(next)
     );
     
     always @(posedge clk) begin
@@ -71,6 +76,7 @@ module ifetch(
     end
     
     always @(negedge clk) begin
+        return_addr <= pc + 8;
         if (ready) begin
             pc = (need_exception_jump ? target_addr : next_pc);
         end

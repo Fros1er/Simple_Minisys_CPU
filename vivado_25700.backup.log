@@ -1,0 +1,1683 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Fri May 13 20:14:05 2022
+# Process ID: 25700
+# Current directory: D:/code/mips_cpu
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14792 D:\code\mips_cpu\mips_cpu.xpr
+# Log file: D:/code/mips_cpu/vivado.log
+# Journal file: D:/code/mips_cpu\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project D:/code/mips_cpu/mips_cpu.xpr
+INFO: [Project 1-313] Project file moved from 'C:/Users/Froster/mips_cpu' since last save.
+CRITICAL WARNING: [Project 1-311] Could not find the file 'D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/prgmip32.coe', nor could it be found using path 'C:/Users/Froster/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/prgmip32.coe'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'F:/programs/Xilinx/Vivado/2017.4/data/ip'.
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/prgmip32.coe] -no_script -reset -force -quiet
+remove_files  D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/prgmip32.coe
+INFO: [Device 21-403] Loading part xc7a100tfgg484-1
+WARNING: [IP_Flow 19-4067] Ignoring invalid widget type specified checkbox.Providing a default widget
+WARNING: [IP_Flow 19-4067] Ignoring invalid widget type specified checkbox.Providing a default widget
+export_ip_user_files -of_objects  [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/coproc0.v] -no_script -reset -force -quiet
+remove_files  D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/coproc0.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+WARNING: [IP_Flow 19-4067] Ignoring invalid widget type specified checkbox.Providing a default widget
+WARNING: [IP_Flow 19-4067] Ignoring invalid widget type specified checkbox.Providing a default widget
+set_property -dict [list CONFIG.Coe_File {D:/code/mips_cpu/mips_cpu.srcs/sources_1/prgmip32.coe}] [get_ips inst_memory]
+INFO: [IP_Flow 19-3484] Absolute path of file 'd:/code/mips_cpu/mips_cpu.srcs/sources_1/prgmip32.coe' provided. It will be converted relative to IP Instance files '../../prgmip32.coe'
+generate_target all [get_files  D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/inst_memory.xci]
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'inst_memory'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'inst_memory'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'inst_memory'...
+INFO: [IP_Flow 19-1686] Generating 'Miscellaneous' target for IP 'inst_memory'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'inst_memory'...
+catch { config_ip_cache -export [get_ips -all inst_memory] }
+export_ip_user_files -of_objects [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/inst_memory.xci] -no_script -sync -force -quiet
+reset_run inst_memory_synth_1
+launch_runs -jobs 8 inst_memory_synth_1
+[Fri May 13 22:14:09 2022] Launched inst_memory_synth_1...
+Run output will be captured here: D:/code/mips_cpu/mips_cpu.runs/inst_memory_synth_1/runme.log
+export_simulation -of_objects [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/inst_memory.xci] -directory D:/code/mips_cpu/mips_cpu.ip_user_files/sim_scripts -ip_user_files_dir D:/code/mips_cpu/mips_cpu.ip_user_files -ipstatic_source_dir D:/code/mips_cpu/mips_cpu.ip_user_files/ipstatic -lib_map_path [list {modelsim=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/modelsim} {questa=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/questa} {riviera=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/riviera} {activehdl=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+generate_target Simulation [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/data_memory.xci]
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'data_memory'...
+export_ip_user_files -of_objects [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/data_memory.xci] -no_script -sync -force -quiet
+export_simulation -of_objects [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/data_memory.xci] -directory D:/code/mips_cpu/mips_cpu.ip_user_files/sim_scripts -ip_user_files_dir D:/code/mips_cpu/mips_cpu.ip_user_files -ipstatic_source_dir D:/code/mips_cpu/mips_cpu.ip_user_files/ipstatic -lib_map_path [list {modelsim=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/modelsim} {questa=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/questa} {riviera=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/riviera} {activehdl=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+launch_simulation
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'XSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File 'F:/programs/Xilinx/Vivado/2017.4/data/xsim/ip/xsim_ip.ini' copied to run dir:'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'top' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/data_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/dmem32.coe'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/inst_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/prgmip32.coe'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj top_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/sim/data_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/sim/inst_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module inst_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/clock_div.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_div
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ifetch
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/io.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module io
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/registers.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module registers
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/seg_tube.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module seg_tube
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: F:/programs/Xilinx/Vivado/2017.4/bin/unwrapped/win64.o/xelab.exe -wto 034582f88ac34d0c898664fca11c3c16 --incr --debug typical --relax --mt 2 -L blk_mem_gen_v8_4_1 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot top_behav xil_defaultlib.top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v:28]
+WARNING: [VRFC 10-278] actual bit length 2 differs from formal bit length 1 for port type [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v:81]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v:14]
+WARNING: [VRFC 10-1783] select index 62 into current_contents is out of bounds [/wrk/2017.4/nightly/2017_12_15_2086221/packages/customer/vivado/data/ip/xilinx/blk_mem_gen_v8_4/simulation/blk_mem_gen_v8_4.v:2420]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clock_div(period=2,width=3)
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_output_stage(...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.inst_memory
+Compiling module xil_defaultlib.ifetch
+Compiling module xil_defaultlib.registers
+Compiling module xil_defaultlib.alu
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.data_memory
+Compiling module xil_defaultlib.memory
+Compiling module xil_defaultlib.clock_div(period=100,width=7)
+Compiling module xil_defaultlib.seg_tube
+Compiling module xil_defaultlib.io
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot top_behav
+
+****** Webtalk v2017.4 (64-bit)
+  **** SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+  **** IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+    ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+source D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/xsim.dir/top_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Fri May 13 22:14:56 2022...
+INFO: [USF-XSim-69] 'elaborate' step finished in '5' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "top_behav -key {Behavioral:sim_1:Functional:top} -tclbatch {top.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+source top.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.i_fetch.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.mem.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'top_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:04 ; elapsed = 00:00:08 . Memory (MB): peak = 1122.180 ; gain = 19.191
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'XSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File 'F:/programs/Xilinx/Vivado/2017.4/data/xsim/ip/xsim_ip.ini' copied to run dir:'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'top' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/data_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/dmem32.coe'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/inst_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/prgmip32.coe'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj top_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/sim/data_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/sim/inst_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module inst_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/clock_div.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_div
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ifetch
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/io.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module io
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/registers.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module registers
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/seg_tube.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module seg_tube
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: F:/programs/Xilinx/Vivado/2017.4/bin/unwrapped/win64.o/xelab.exe -wto 034582f88ac34d0c898664fca11c3c16 --incr --debug typical --relax --mt 2 -L blk_mem_gen_v8_4_1 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot top_behav xil_defaultlib.top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v:28]
+WARNING: [VRFC 10-278] actual bit length 2 differs from formal bit length 1 for port type [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v:82]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v:14]
+WARNING: [VRFC 10-1783] select index 62 into current_contents is out of bounds [/wrk/2017.4/nightly/2017_12_15_2086221/packages/customer/vivado/data/ip/xilinx/blk_mem_gen_v8_4/simulation/blk_mem_gen_v8_4.v:2420]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clock_div(period=2,width=3)
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_output_stage(...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.inst_memory
+Compiling module xil_defaultlib.ifetch
+Compiling module xil_defaultlib.registers
+Compiling module xil_defaultlib.alu
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.data_memory
+Compiling module xil_defaultlib.memory
+Compiling module xil_defaultlib.clock_div(period=100,width=7)
+Compiling module xil_defaultlib.seg_tube
+Compiling module xil_defaultlib.io
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot top_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "top_behav -key {Behavioral:sim_1:Functional:top} -tclbatch {top.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+source top.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.i_fetch.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.mem.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'top_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'XSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File 'F:/programs/Xilinx/Vivado/2017.4/data/xsim/ip/xsim_ip.ini' copied to run dir:'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'top' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/data_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/dmem32.coe'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/inst_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/prgmip32.coe'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj top_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/sim/data_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/sim/inst_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module inst_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/clock_div.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_div
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ifetch
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/io.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module io
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/registers.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module registers
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/seg_tube.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module seg_tube
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: F:/programs/Xilinx/Vivado/2017.4/bin/unwrapped/win64.o/xelab.exe -wto 034582f88ac34d0c898664fca11c3c16 --incr --debug typical --relax --mt 2 -L blk_mem_gen_v8_4_1 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot top_behav xil_defaultlib.top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v:28]
+WARNING: [VRFC 10-278] actual bit length 2 differs from formal bit length 1 for port type [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v:82]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v:14]
+WARNING: [VRFC 10-1783] select index 62 into current_contents is out of bounds [/wrk/2017.4/nightly/2017_12_15_2086221/packages/customer/vivado/data/ip/xilinx/blk_mem_gen_v8_4/simulation/blk_mem_gen_v8_4.v:2420]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clock_div(period=2,width=3)
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_output_stage(...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.inst_memory
+Compiling module xil_defaultlib.ifetch
+Compiling module xil_defaultlib.registers
+Compiling module xil_defaultlib.alu
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.data_memory
+Compiling module xil_defaultlib.memory
+Compiling module xil_defaultlib.clock_div(period=100,width=7)
+Compiling module xil_defaultlib.seg_tube
+Compiling module xil_defaultlib.io
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot top_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '1' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "top_behav -key {Behavioral:sim_1:Functional:top} -tclbatch {top.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+source top.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.i_fetch.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.mem.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'top_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'XSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File 'F:/programs/Xilinx/Vivado/2017.4/data/xsim/ip/xsim_ip.ini' copied to run dir:'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'top' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/data_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/dmem32.coe'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/inst_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/prgmip32.coe'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj top_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/sim/data_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/sim/inst_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module inst_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/clock_div.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_div
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ifetch
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/io.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module io
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/registers.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module registers
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/seg_tube.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module seg_tube
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: F:/programs/Xilinx/Vivado/2017.4/bin/unwrapped/win64.o/xelab.exe -wto 034582f88ac34d0c898664fca11c3c16 --incr --debug typical --relax --mt 2 -L blk_mem_gen_v8_4_1 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot top_behav xil_defaultlib.top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v:28]
+WARNING: [VRFC 10-278] actual bit length 2 differs from formal bit length 1 for port type [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v:82]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v:14]
+WARNING: [VRFC 10-1783] select index 62 into current_contents is out of bounds [/wrk/2017.4/nightly/2017_12_15_2086221/packages/customer/vivado/data/ip/xilinx/blk_mem_gen_v8_4/simulation/blk_mem_gen_v8_4.v:2420]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clock_div(period=2,width=3)
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_output_stage(...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.inst_memory
+Compiling module xil_defaultlib.ifetch
+Compiling module xil_defaultlib.registers
+Compiling module xil_defaultlib.alu
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.data_memory
+Compiling module xil_defaultlib.memory
+Compiling module xil_defaultlib.clock_div(period=100,width=7)
+Compiling module xil_defaultlib.seg_tube
+Compiling module xil_defaultlib.io
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot top_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "top_behav -key {Behavioral:sim_1:Functional:top} -tclbatch {top.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+source top.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.i_fetch.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.mem.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'top_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'XSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File 'F:/programs/Xilinx/Vivado/2017.4/data/xsim/ip/xsim_ip.ini' copied to run dir:'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'top' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/data_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/dmem32.coe'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/inst_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/prgmip32.coe'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj top_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/sim/data_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/sim/inst_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module inst_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/clock_div.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_div
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ifetch
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/io.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module io
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/registers.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module registers
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/seg_tube.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module seg_tube
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: F:/programs/Xilinx/Vivado/2017.4/bin/unwrapped/win64.o/xelab.exe -wto 034582f88ac34d0c898664fca11c3c16 --incr --debug typical --relax --mt 2 -L blk_mem_gen_v8_4_1 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot top_behav xil_defaultlib.top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v:28]
+WARNING: [VRFC 10-278] actual bit length 2 differs from formal bit length 1 for port type [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v:82]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v:14]
+WARNING: [VRFC 10-1783] select index 62 into current_contents is out of bounds [/wrk/2017.4/nightly/2017_12_15_2086221/packages/customer/vivado/data/ip/xilinx/blk_mem_gen_v8_4/simulation/blk_mem_gen_v8_4.v:2420]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clock_div(period=2,width=3)
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_output_stage(...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.inst_memory
+Compiling module xil_defaultlib.ifetch
+Compiling module xil_defaultlib.registers
+Compiling module xil_defaultlib.alu
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.data_memory
+Compiling module xil_defaultlib.memory
+Compiling module xil_defaultlib.clock_div(period=100,width=7)
+Compiling module xil_defaultlib.seg_tube
+Compiling module xil_defaultlib.io
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot top_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '1' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "top_behav -key {Behavioral:sim_1:Functional:top} -tclbatch {top.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+source top.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.i_fetch.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.mem.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'top_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'XSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File 'F:/programs/Xilinx/Vivado/2017.4/data/xsim/ip/xsim_ip.ini' copied to run dir:'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'top' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/data_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/dmem32.coe'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/inst_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/prgmip32.coe'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj top_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/sim/data_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/sim/inst_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module inst_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/clock_div.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_div
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ifetch
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/io.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module io
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/registers.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module registers
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/seg_tube.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module seg_tube
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: F:/programs/Xilinx/Vivado/2017.4/bin/unwrapped/win64.o/xelab.exe -wto 034582f88ac34d0c898664fca11c3c16 --incr --debug typical --relax --mt 2 -L blk_mem_gen_v8_4_1 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot top_behav xil_defaultlib.top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v:28]
+WARNING: [VRFC 10-278] actual bit length 2 differs from formal bit length 1 for port type [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v:82]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v:14]
+WARNING: [VRFC 10-1783] select index 62 into current_contents is out of bounds [/wrk/2017.4/nightly/2017_12_15_2086221/packages/customer/vivado/data/ip/xilinx/blk_mem_gen_v8_4/simulation/blk_mem_gen_v8_4.v:2420]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clock_div(period=2,width=3)
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_output_stage(...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.inst_memory
+Compiling module xil_defaultlib.ifetch
+Compiling module xil_defaultlib.registers
+Compiling module xil_defaultlib.alu
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.data_memory
+Compiling module xil_defaultlib.memory
+Compiling module xil_defaultlib.clock_div(period=100,width=7)
+Compiling module xil_defaultlib.seg_tube
+Compiling module xil_defaultlib.io
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot top_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "top_behav -key {Behavioral:sim_1:Functional:top} -tclbatch {top.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+source top.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.i_fetch.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.mem.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'top_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'XSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File 'F:/programs/Xilinx/Vivado/2017.4/data/xsim/ip/xsim_ip.ini' copied to run dir:'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'top' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/data_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/dmem32.coe'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/inst_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/prgmip32.coe'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj top_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/sim/data_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/sim/inst_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module inst_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/clock_div.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_div
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ifetch
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/io.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module io
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/registers.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module registers
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/seg_tube.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module seg_tube
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: F:/programs/Xilinx/Vivado/2017.4/bin/unwrapped/win64.o/xelab.exe -wto 034582f88ac34d0c898664fca11c3c16 --incr --debug typical --relax --mt 2 -L blk_mem_gen_v8_4_1 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot top_behav xil_defaultlib.top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v:28]
+WARNING: [VRFC 10-278] actual bit length 2 differs from formal bit length 1 for port type [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v:82]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v:14]
+WARNING: [VRFC 10-1783] select index 62 into current_contents is out of bounds [/wrk/2017.4/nightly/2017_12_15_2086221/packages/customer/vivado/data/ip/xilinx/blk_mem_gen_v8_4/simulation/blk_mem_gen_v8_4.v:2420]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clock_div(period=2,width=3)
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_output_stage(...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.inst_memory
+Compiling module xil_defaultlib.ifetch
+Compiling module xil_defaultlib.registers
+Compiling module xil_defaultlib.alu
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.data_memory
+Compiling module xil_defaultlib.memory
+Compiling module xil_defaultlib.clock_div(period=100,width=7)
+Compiling module xil_defaultlib.seg_tube
+Compiling module xil_defaultlib.io
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot top_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '1' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "top_behav -key {Behavioral:sim_1:Functional:top} -tclbatch {top.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+source top.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.i_fetch.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.mem.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'top_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'XSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File 'F:/programs/Xilinx/Vivado/2017.4/data/xsim/ip/xsim_ip.ini' copied to run dir:'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'top' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/data_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/dmem32.coe'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/inst_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/prgmip32.coe'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj top_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/sim/data_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/sim/inst_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module inst_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/clock_div.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_div
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ifetch
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/io.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module io
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/registers.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module registers
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/seg_tube.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module seg_tube
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: F:/programs/Xilinx/Vivado/2017.4/bin/unwrapped/win64.o/xelab.exe -wto 034582f88ac34d0c898664fca11c3c16 --incr --debug typical --relax --mt 2 -L blk_mem_gen_v8_4_1 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot top_behav xil_defaultlib.top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v:28]
+WARNING: [VRFC 10-278] actual bit length 2 differs from formal bit length 1 for port type [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v:82]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v:14]
+WARNING: [VRFC 10-1783] select index 62 into current_contents is out of bounds [/wrk/2017.4/nightly/2017_12_15_2086221/packages/customer/vivado/data/ip/xilinx/blk_mem_gen_v8_4/simulation/blk_mem_gen_v8_4.v:2420]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clock_div(period=2,width=3)
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_output_stage(...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.inst_memory
+Compiling module xil_defaultlib.ifetch
+Compiling module xil_defaultlib.registers
+Compiling module xil_defaultlib.alu
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.data_memory
+Compiling module xil_defaultlib.memory
+Compiling module xil_defaultlib.clock_div(period=100,width=7)
+Compiling module xil_defaultlib.seg_tube
+Compiling module xil_defaultlib.io
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot top_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "top_behav -key {Behavioral:sim_1:Functional:top} -tclbatch {top.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+source top.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.i_fetch.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.mem.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'top_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'XSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File 'F:/programs/Xilinx/Vivado/2017.4/data/xsim/ip/xsim_ip.ini' copied to run dir:'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'top' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/data_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/dmem32.coe'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/inst_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/prgmip32.coe'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj top_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/sim/data_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/sim/inst_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module inst_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/clock_div.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_div
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ifetch
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/io.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module io
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/registers.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module registers
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/seg_tube.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module seg_tube
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: F:/programs/Xilinx/Vivado/2017.4/bin/unwrapped/win64.o/xelab.exe -wto 034582f88ac34d0c898664fca11c3c16 --incr --debug typical --relax --mt 2 -L blk_mem_gen_v8_4_1 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot top_behav xil_defaultlib.top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v:28]
+WARNING: [VRFC 10-278] actual bit length 2 differs from formal bit length 1 for port type [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v:82]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v:14]
+WARNING: [VRFC 10-1783] select index 62 into current_contents is out of bounds [/wrk/2017.4/nightly/2017_12_15_2086221/packages/customer/vivado/data/ip/xilinx/blk_mem_gen_v8_4/simulation/blk_mem_gen_v8_4.v:2420]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clock_div(period=2,width=3)
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_output_stage(...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.inst_memory
+Compiling module xil_defaultlib.ifetch
+Compiling module xil_defaultlib.registers
+Compiling module xil_defaultlib.alu
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.data_memory
+Compiling module xil_defaultlib.memory
+Compiling module xil_defaultlib.clock_div(period=100,width=7)
+Compiling module xil_defaultlib.seg_tube
+Compiling module xil_defaultlib.io
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot top_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '1' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "top_behav -key {Behavioral:sim_1:Functional:top} -tclbatch {top.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+source top.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.i_fetch.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.mem.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'top_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'XSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File 'F:/programs/Xilinx/Vivado/2017.4/data/xsim/ip/xsim_ip.ini' copied to run dir:'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'top' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/data_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/dmem32.coe'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/inst_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/prgmip32.coe'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj top_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/sim/data_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/sim/inst_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module inst_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/clock_div.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_div
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ifetch
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/io.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module io
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/registers.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module registers
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/seg_tube.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module seg_tube
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: F:/programs/Xilinx/Vivado/2017.4/bin/unwrapped/win64.o/xelab.exe -wto 034582f88ac34d0c898664fca11c3c16 --incr --debug typical --relax --mt 2 -L blk_mem_gen_v8_4_1 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot top_behav xil_defaultlib.top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v:28]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v:14]
+WARNING: [VRFC 10-1783] select index 62 into current_contents is out of bounds [/wrk/2017.4/nightly/2017_12_15_2086221/packages/customer/vivado/data/ip/xilinx/blk_mem_gen_v8_4/simulation/blk_mem_gen_v8_4.v:2420]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clock_div(period=2,width=3)
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_output_stage(...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.inst_memory
+Compiling module xil_defaultlib.ifetch
+Compiling module xil_defaultlib.registers
+Compiling module xil_defaultlib.alu
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.data_memory
+Compiling module xil_defaultlib.memory
+Compiling module xil_defaultlib.clock_div(period=100,width=7)
+Compiling module xil_defaultlib.seg_tube
+Compiling module xil_defaultlib.io
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot top_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "top_behav -key {Behavioral:sim_1:Functional:top} -tclbatch {top.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+source top.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.i_fetch.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.mem.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'top_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'XSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File 'F:/programs/Xilinx/Vivado/2017.4/data/xsim/ip/xsim_ip.ini' copied to run dir:'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'top' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/data_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/dmem32.coe'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/inst_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/prgmip32.coe'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj top_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/sim/data_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/sim/inst_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module inst_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/clock_div.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_div
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ifetch
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/io.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module io
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/registers.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module registers
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/seg_tube.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module seg_tube
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: F:/programs/Xilinx/Vivado/2017.4/bin/unwrapped/win64.o/xelab.exe -wto 034582f88ac34d0c898664fca11c3c16 --incr --debug typical --relax --mt 2 -L blk_mem_gen_v8_4_1 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot top_behav xil_defaultlib.top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v:28]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v:14]
+WARNING: [VRFC 10-1783] select index 62 into current_contents is out of bounds [/wrk/2017.4/nightly/2017_12_15_2086221/packages/customer/vivado/data/ip/xilinx/blk_mem_gen_v8_4/simulation/blk_mem_gen_v8_4.v:2420]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clock_div(period=2,width=3)
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_output_stage(...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.inst_memory
+Compiling module xil_defaultlib.ifetch
+Compiling module xil_defaultlib.registers
+Compiling module xil_defaultlib.alu
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.data_memory
+Compiling module xil_defaultlib.memory
+Compiling module xil_defaultlib.clock_div(period=100,width=7)
+Compiling module xil_defaultlib.seg_tube
+Compiling module xil_defaultlib.io
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot top_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "top_behav -key {Behavioral:sim_1:Functional:top} -tclbatch {top.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+source top.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.i_fetch.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.mem.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'top_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'XSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File 'F:/programs/Xilinx/Vivado/2017.4/data/xsim/ip/xsim_ip.ini' copied to run dir:'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'top' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/data_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/dmem32.coe'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/inst_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/prgmip32.coe'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj top_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/sim/data_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/sim/inst_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module inst_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/clock_div.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_div
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ifetch
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/io.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module io
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/registers.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module registers
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/seg_tube.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module seg_tube
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: F:/programs/Xilinx/Vivado/2017.4/bin/unwrapped/win64.o/xelab.exe -wto 034582f88ac34d0c898664fca11c3c16 --incr --debug typical --relax --mt 2 -L blk_mem_gen_v8_4_1 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot top_behav xil_defaultlib.top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v:28]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v:14]
+WARNING: [VRFC 10-1783] select index 62 into current_contents is out of bounds [/wrk/2017.4/nightly/2017_12_15_2086221/packages/customer/vivado/data/ip/xilinx/blk_mem_gen_v8_4/simulation/blk_mem_gen_v8_4.v:2420]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clock_div(period=2,width=3)
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_output_stage(...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.inst_memory
+Compiling module xil_defaultlib.ifetch
+Compiling module xil_defaultlib.registers
+Compiling module xil_defaultlib.alu
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.data_memory
+Compiling module xil_defaultlib.memory
+Compiling module xil_defaultlib.clock_div(period=100,width=7)
+Compiling module xil_defaultlib.seg_tube
+Compiling module xil_defaultlib.io
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot top_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "top_behav -key {Behavioral:sim_1:Functional:top} -tclbatch {top.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+source top.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.i_fetch.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.mem.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+         0
+         0
+4294901760
+4294966272
+         0
+         0
+         0
+         0
+4294966272
+4294966272
+        20
+        24
+        24
+         0
+         0
+4294901760
+4294966272
+         0
+         0
+4294966272
+4294966272
+        20
+        24
+        24
+         0
+         0
+4294901760
+4294966272
+         0
+         0
+4294966272
+4294966272
+        20
+        24
+        24
+         0
+         0
+4294901760
+4294966272
+         0
+         0
+4294966272
+4294966272
+        20
+        24
+        24
+         0
+         0
+4294901760
+4294966272
+         0
+         0
+4294966272
+4294966272
+        20
+        24
+        24
+         0
+         0
+4294901760
+4294966272
+         0
+         0
+4294966272
+4294966272
+        20
+        24
+        24
+         0
+         0
+4294901760
+4294966272
+         0
+         0
+4294966272
+4294966272
+        20
+        24
+        24
+         0
+         0
+4294901760
+4294966272
+         0
+         0
+4294966272
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'top_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'XSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File 'F:/programs/Xilinx/Vivado/2017.4/data/xsim/ip/xsim_ip.ini' copied to run dir:'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'top' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/data_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/dmem32.coe'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/inst_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/prgmip32.coe'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj top_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/sim/data_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/sim/inst_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module inst_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/clock_div.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_div
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ifetch
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/io.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module io
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/registers.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module registers
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/seg_tube.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module seg_tube
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: F:/programs/Xilinx/Vivado/2017.4/bin/unwrapped/win64.o/xelab.exe -wto 034582f88ac34d0c898664fca11c3c16 --incr --debug typical --relax --mt 2 -L blk_mem_gen_v8_4_1 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot top_behav xil_defaultlib.top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v:28]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v:14]
+WARNING: [VRFC 10-1783] select index 62 into current_contents is out of bounds [/wrk/2017.4/nightly/2017_12_15_2086221/packages/customer/vivado/data/ip/xilinx/blk_mem_gen_v8_4/simulation/blk_mem_gen_v8_4.v:2420]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clock_div(period=2,width=3)
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_output_stage(...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.inst_memory
+Compiling module xil_defaultlib.ifetch
+Compiling module xil_defaultlib.registers
+Compiling module xil_defaultlib.alu
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.data_memory
+Compiling module xil_defaultlib.memory
+Compiling module xil_defaultlib.clock_div(period=100,width=7)
+Compiling module xil_defaultlib.seg_tube
+Compiling module xil_defaultlib.io
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot top_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '1' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "top_behav -key {Behavioral:sim_1:Functional:top} -tclbatch {top.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+source top.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.i_fetch.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.mem.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+         x
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'top_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'XSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File 'F:/programs/Xilinx/Vivado/2017.4/data/xsim/ip/xsim_ip.ini' copied to run dir:'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'top' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/data_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/dmem32.coe'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/inst_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/prgmip32.coe'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj top_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/sim/data_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/sim/inst_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module inst_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/clock_div.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_div
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ifetch
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/io.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module io
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/registers.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module registers
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/seg_tube.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module seg_tube
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: F:/programs/Xilinx/Vivado/2017.4/bin/unwrapped/win64.o/xelab.exe -wto 034582f88ac34d0c898664fca11c3c16 --incr --debug typical --relax --mt 2 -L blk_mem_gen_v8_4_1 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot top_behav xil_defaultlib.top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v:30]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v:14]
+WARNING: [VRFC 10-1783] select index 62 into current_contents is out of bounds [/wrk/2017.4/nightly/2017_12_15_2086221/packages/customer/vivado/data/ip/xilinx/blk_mem_gen_v8_4/simulation/blk_mem_gen_v8_4.v:2420]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clock_div(period=2,width=3)
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_output_stage(...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.inst_memory
+Compiling module xil_defaultlib.ifetch
+Compiling module xil_defaultlib.registers
+Compiling module xil_defaultlib.alu
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.data_memory
+Compiling module xil_defaultlib.memory
+Compiling module xil_defaultlib.clock_div(period=100,width=7)
+Compiling module xil_defaultlib.seg_tube
+Compiling module xil_defaultlib.io
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot top_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "top_behav -key {Behavioral:sim_1:Functional:top} -tclbatch {top.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+source top.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.i_fetch.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.mem.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'top_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+WARNING: [IP_Flow 19-4067] Ignoring invalid widget type specified checkbox.Providing a default widget
+WARNING: [IP_Flow 19-4067] Ignoring invalid widget type specified checkbox.Providing a default widget
+set_property -dict [list CONFIG.Coe_File {d:/code/mips_cpu/mips_cpu.srcs/sources_1/prgmip32.coe}] [get_ips inst_memory]
+INFO: [IP_Flow 19-3484] Absolute path of file 'd:/code/mips_cpu/mips_cpu.srcs/sources_1/prgmip32.coe' provided. It will be converted relative to IP Instance files '../../prgmip32.coe'
+generate_target all [get_files  D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/inst_memory.xci]
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'inst_memory'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'inst_memory'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'inst_memory'...
+INFO: [IP_Flow 19-1686] Generating 'Miscellaneous' target for IP 'inst_memory'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'inst_memory'...
+catch { config_ip_cache -export [get_ips -all inst_memory] }
+export_ip_user_files -of_objects [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/inst_memory.xci] -no_script -sync -force -quiet
+reset_run inst_memory_synth_1
+launch_runs -jobs 8 inst_memory_synth_1
+[Fri May 13 22:51:04 2022] Launched inst_memory_synth_1...
+Run output will be captured here: D:/code/mips_cpu/mips_cpu.runs/inst_memory_synth_1/runme.log
+export_simulation -of_objects [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/inst_memory.xci] -directory D:/code/mips_cpu/mips_cpu.ip_user_files/sim_scripts -ip_user_files_dir D:/code/mips_cpu/mips_cpu.ip_user_files -ipstatic_source_dir D:/code/mips_cpu/mips_cpu.ip_user_files/ipstatic -lib_map_path [list {modelsim=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/modelsim} {questa=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/questa} {riviera=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/riviera} {activehdl=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+launch_simulation
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'XSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File 'F:/programs/Xilinx/Vivado/2017.4/data/xsim/ip/xsim_ip.ini' copied to run dir:'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'top' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/data_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/dmem32.coe'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/inst_memory.mif'
+INFO: [SIM-utils-43] Exported 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim/prgmip32.coe'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj top_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/sim/data_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/sim/inst_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module inst_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/clock_div.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_div
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ifetch
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/io.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module io
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/registers.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module registers
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/seg_tube.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module seg_tube
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: F:/programs/Xilinx/Vivado/2017.4/bin/unwrapped/win64.o/xelab.exe -wto 034582f88ac34d0c898664fca11c3c16 --incr --debug typical --relax --mt 2 -L blk_mem_gen_v8_4_1 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot top_behav xil_defaultlib.top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/ifetch.v:30]
+WARNING: [VRFC 10-278] actual bit length 32 differs from formal bit length 15 for port addra [D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/memory.v:14]
+WARNING: [VRFC 10-1783] select index 62 into current_contents is out of bounds [/wrk/2017.4/nightly/2017_12_15_2086221/packages/customer/vivado/data/ip/xilinx/blk_mem_gen_v8_4/simulation/blk_mem_gen_v8_4.v:2420]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clock_div(period=2,width=3)
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_output_stage(...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.inst_memory
+Compiling module xil_defaultlib.ifetch
+Compiling module xil_defaultlib.registers
+Compiling module xil_defaultlib.alu
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_1.blk_mem_gen_v8_4_1(C_FAMILY="art...
+Compiling module xil_defaultlib.data_memory
+Compiling module xil_defaultlib.memory
+Compiling module xil_defaultlib.clock_div(period=100,width=7)
+Compiling module xil_defaultlib.seg_tube
+Compiling module xil_defaultlib.io
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot top_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/code/mips_cpu/mips_cpu.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "top_behav -key {Behavioral:sim_1:Functional:top} -tclbatch {top.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+source top.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.i_fetch.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top.mem.mem.inst.native_mem_module.blk_mem_gen_v8_4_1_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'top_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1168.203 ; gain = 0.000

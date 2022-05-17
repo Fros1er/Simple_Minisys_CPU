@@ -1,0 +1,81 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Fri May 13 20:14:05 2022
+# Process ID: 25700
+# Current directory: D:/code/mips_cpu
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14792 D:\code\mips_cpu\mips_cpu.xpr
+# Log file: D:/code/mips_cpu/vivado.log
+# Journal file: D:/code/mips_cpu\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project D:/code/mips_cpu/mips_cpu.xpr
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/prgmip32.coe] -no_script -reset -force -quiet
+remove_files  D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/prgmip32.coe
+export_ip_user_files -of_objects  [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/coproc0.v] -no_script -reset -force -quiet
+remove_files  D:/code/mips_cpu/mips_cpu.srcs/sources_1/new/coproc0.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+set_property -dict [list CONFIG.Coe_File {D:/code/mips_cpu/mips_cpu.srcs/sources_1/prgmip32.coe}] [get_ips inst_memory]
+generate_target all [get_files  D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/inst_memory.xci]
+catch { config_ip_cache -export [get_ips -all inst_memory] }
+export_ip_user_files -of_objects [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/inst_memory.xci] -no_script -sync -force -quiet
+reset_run inst_memory_synth_1
+launch_runs -jobs 8 inst_memory_synth_1
+export_simulation -of_objects [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/inst_memory.xci] -directory D:/code/mips_cpu/mips_cpu.ip_user_files/sim_scripts -ip_user_files_dir D:/code/mips_cpu/mips_cpu.ip_user_files -ipstatic_source_dir D:/code/mips_cpu/mips_cpu.ip_user_files/ipstatic -lib_map_path [list {modelsim=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/modelsim} {questa=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/questa} {riviera=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/riviera} {activehdl=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+generate_target Simulation [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/data_memory.xci]
+export_ip_user_files -of_objects [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/data_memory.xci] -no_script -sync -force -quiet
+export_simulation -of_objects [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/data_memory.xci] -directory D:/code/mips_cpu/mips_cpu.ip_user_files/sim_scripts -ip_user_files_dir D:/code/mips_cpu/mips_cpu.ip_user_files -ipstatic_source_dir D:/code/mips_cpu/mips_cpu.ip_user_files/ipstatic -lib_map_path [list {modelsim=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/modelsim} {questa=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/questa} {riviera=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/riviera} {activehdl=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+launch_simulation
+source top.tcl
+close_sim
+launch_simulation
+source top.tcl
+close_sim
+launch_simulation
+source top.tcl
+close_sim
+launch_simulation
+source top.tcl
+close_sim
+launch_simulation
+source top.tcl
+close_sim
+launch_simulation
+source top.tcl
+close_sim
+launch_simulation
+source top.tcl
+close_sim
+launch_simulation
+source top.tcl
+close_sim
+launch_simulation
+source top.tcl
+close_sim
+launch_simulation
+source top.tcl
+close_sim
+launch_simulation
+source top.tcl
+close_sim
+launch_simulation
+source top.tcl
+close_sim
+launch_simulation
+source top.tcl
+close_sim
+launch_simulation
+source top.tcl
+close_sim
+set_property -dict [list CONFIG.Coe_File {d:/code/mips_cpu/mips_cpu.srcs/sources_1/prgmip32.coe}] [get_ips inst_memory]
+generate_target all [get_files  D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/inst_memory.xci]
+catch { config_ip_cache -export [get_ips -all inst_memory] }
+export_ip_user_files -of_objects [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/inst_memory.xci] -no_script -sync -force -quiet
+reset_run inst_memory_synth_1
+launch_runs -jobs 8 inst_memory_synth_1
+export_simulation -of_objects [get_files D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/inst_memory.xci] -directory D:/code/mips_cpu/mips_cpu.ip_user_files/sim_scripts -ip_user_files_dir D:/code/mips_cpu/mips_cpu.ip_user_files -ipstatic_source_dir D:/code/mips_cpu/mips_cpu.ip_user_files/ipstatic -lib_map_path [list {modelsim=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/modelsim} {questa=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/questa} {riviera=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/riviera} {activehdl=D:/code/mips_cpu/mips_cpu.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+launch_simulation
+source top.tcl

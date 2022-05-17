@@ -12,12 +12,12 @@ module io(
     reg[31:0] io_buffer[5:0];
     reg[31:0] exti_reg[5:0];
     
-    assign gpio_a = io_buffer[0];
-    assign gpio_b = io_buffer[1];
-    assign gpio_c = io_buffer[2];
-    assign gpio_d = io_buffer[3];
-    assign gpio_e = io_buffer[4];
-    assign gpio_f = io_buffer[5];
+    //assign gpio_a = io_buffer[0];
+    //assign gpio_b = io_buffer[1];
+   // assign gpio_c = io_buffer[2];
+    //assign gpio_d = io_buffer[3];
+    //assign gpio_e = io_buffer[4];
+    //assign gpio_f = io_buffer[5];
     
     wire test;
     assign test = gpio_a;

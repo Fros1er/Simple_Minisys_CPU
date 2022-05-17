@@ -24,6 +24,7 @@ assign rs_val = regs[rs];
 assign rt_val = regs[rt];
 
 always @(posedge clk) begin
+
     if (rt_write_enable && rt != 0) begin
         regs[rt] = write_val;
     end
