@@ -4,9 +4,8 @@ module ifetch(
     input clk,
     input rst,
     input [31:0] result,
-    input is_interrupt,
-    input [3:0] cause,
-    output alu_en, is_eret,
+    input [8:0] pending_interrupts,
+    output alu_en,
     output [1:0] alu_type, // 01 R 00 I 10 coproc1
     output [4:0] rs,
     output [4:0] rt,
@@ -17,13 +16,19 @@ module ifetch(
     output [5:0] opcode,
     output reg [31:0] return_addr,
     output [31:0] pc_sim,
-    output [31:0] instruction
+    output [31:0] instruction,
+    output need_exception_jump,
+    output [31:0] target_addr,
+    output[8:0] int_en
 );
-    reg[31:0] pc = 32'b0;
-    wire[31:0] next_pc;
+    reg ready;
+    reg[31:0] pc;
+    wire[31:0] next_pc, pcplus4;
+    wire is_trap, is_eret;
     
     assign pc_sim = pc;
     assign is_eret = instruction == 32'h42000018;
+    assign pcplus4 = pc + 4;
     
     inst_memory mem(.addra(pc >> 2), .clka(clk), .douta(instruction));
     
@@ -34,7 +39,7 @@ module ifetch(
     assign rd = opcode == 6'b00_0011 ? 31 : instruction[15:11]; 
     assign immediate = instruction[15:0];
     assign shamt = instruction[10:6];
-    assign is_trap = opcode == (6'b0 && funct[5:2] == 4'b1101) || // teq, tne
+    assign is_trap = (opcode == 6'b0 && funct[5:2] == 4'b1101) || // teq, tne
                      opcode == 6'b00_0001; // teqi, tnei
     assign alu_en = opcode != 6'b00_0010 && 
                     opcode != 6'b00_0011 &&
@@ -42,28 +47,38 @@ module ifetch(
     assign alu_type = (opcode == 6'b00_0000) ? 2'b01 :
                       (opcode == 6'b01_0000) ? 2'b10 : 2'b00;
     
-    // 不考虑异常的next_pc
+    // 不�?�虑异常的next_pc
     assign next_pc = (instruction[31:28] == 4'b00_01 && result[0] == 1) ? pc + 4 + {{14{instruction[15]}}, instruction[15:0], 2'b00} : // bne or beq
-                     (instruction[31:27] == 6'b00_001) ? {{pc + 4}[31:28], instruction[25:0], 2'b00} : // jump and jal
+                     (instruction[31:27] == 6'b00_001) ? {pcplus4[31:28], instruction[25:0], 2'b00} : // jump and jal
                      (instruction[31:26] == 6'b00_0000 && instruction[5:0] == 6'b00_1000) ? result : // jr
                      pc + 4;
     
-    wire need_exception_jump;
-    wire [31:0] target_addr;
+    //wire need_exception_jump;
+    //wire [31:0] target_addr;
     nvic nvic_t(
-        next_pc(next_pc),
-        arriving_interrupts(),
-        is_eret(is_eret),
-        need_jump(need_exception_jump),
-        target_addr(target_addr)
+        .clk(clk),
+        .rst(rst),
+        .next_pc(next_pc),
+        .arriving_interrupts(pending_interrupts | {1'b0, is_trap, 7'b0}),
+        .is_eret(is_eret),
+        .need_jump(need_exception_jump),
+        .target_addr(target_addr),
+        .int_en(int_en)
     );
     
+    always @(posedge clk) begin
+        ready <= 1;
+    end
+    
     always @(negedge clk) begin
-        pc <= (need_exception_jump ? target_addr : next_pc);
+        if (ready) begin
+            pc = (need_exception_jump ? target_addr : next_pc);
+        end
     end
     
     always @(negedge rst) begin
         pc = 32'b0;
+        ready <= 0;
     end
 
 endmodule

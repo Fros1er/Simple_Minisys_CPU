@@ -6,15 +6,16 @@ module nvic(
     input[8:0] arriving_interrupts,
     input is_eret,
     output need_jump,
-    output[31:0] target_addr
+    output[31:0] target_addr,
+    output[8:0] int_en
 );
 
-// posedge: æ›´æ–°interrupt_enã€‚
-// comb: å¦‚æœæ˜¯eretï¼Œinterrupt_enç½®0ï¼Œneed_jumpç½®1ï¼Œtarget_addrä¸ºepc_all[current]ã€‚
-// comb: å¦‚æœæœ‰ä¼˜å…ˆçº§æ›´é«˜çš„exceptionï¼Œneed_jumpç½®1ï¼Œtarget_addrä¸º0xfc+causeã€‚
-// å¦‚æœæœ‰exceptionè·³è½¬ï¼Œå†™å¯¹åº”çš„epc_allã€‚
-// å› ä¸ºæ˜¯å†™next_pcï¼Œæ‰€ä»¥ä¸éœ€è¦mfcå’Œmtcäº†ã€‚ä¹Ÿä¸ç”¨è€ƒè™‘å¼‚å¸¸æ˜¯å¦è§¦å‘åœ¨jumpé‚£é‡Œã€‚
-// å¦‚æœæ˜¯eret, next_pcæ˜¯epc_all[current]ã€‚å¦åˆ™å¤–éƒ¨ä¼ è¿‡æ¥ã€‚
+// posedge: ¸üĞÂinterrupt_en¡£
+// comb: Èç¹ûÊÇeret£¬interrupt_enÖÃ0£¬need_jumpÖÃ1£¬target_addrÎªepc_all[current]¡£
+// comb: Èç¹ûÓĞÓÅÏÈ¼¶¸ü¸ßµÄexception£¬need_jumpÖÃ1£¬target_addrÎª0xfc+cause¡£
+// Èç¹ûÓĞexceptionÌø×ª£¬Ğ´¶ÔÓ¦µÄepc_all¡£
+// ÒòÎªÊÇĞ´next_pc£¬ËùÒÔ²»ĞèÒªmfcºÍmtcÁË¡£Ò²²»ÓÃ¿¼ÂÇÒì³£ÊÇ·ñ´¥·¢ÔÚjumpÄÇÀï¡£
+// Èç¹ûÊÇeret, next_pcÊÇepc_all[current]¡£·ñÔòÍâ²¿´«¹ıÀ´¡£
 
 reg[31:0] epc_all[8:0];
 wire[31:0] next_pc_with_eret;
@@ -22,22 +23,20 @@ reg[3:0] current_interrupt;
 wire[3:0] next_interrupt;
 reg[8:0] interrupt_en;
 
+assign int_en = interrupt_en;
+
 assign next_pc_with_eret = is_eret ? epc_all[current_interrupt] : next_pc;
 assign target_addr = interrupt_en == 0 ? next_pc_with_eret : (32'h4180 + {next_interrupt, 2'b00});
 assign need_jump = current_interrupt != next_interrupt;
 
-priority_encoder(interrupt_en, next_interrupt);
+priority_encoder enc(interrupt_en, next_interrupt);
 
+integer i;
 always @(posedge clk) begin
     if (is_eret) begin
         interrupt_en[current_interrupt] = 0;
     end
-    integer i;
-    for (i = 0; i < 9; i = i + 1) begin
-        if (!interrupt_en[i]) begin
-            interrupt_en[i] = 1;
-        end
-    end
+    interrupt_en = interrupt_en | arriving_interrupts;
 end
 
 always @(negedge clk) begin
@@ -48,6 +47,9 @@ end
 always @(negedge rst) begin
     current_interrupt = 0;
     interrupt_en = 0;
+    for (i = 0; i < 9; i = i + 1) begin
+        epc_all[i] = 0;
+    end
 end
 
 endmodule

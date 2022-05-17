@@ -1,28 +1,29 @@
 `timescale 1ns / 1ps
 
 module cpu_top(
-//        input sys_clk, rst,
-    inout[31:0] gpio_a, gpio_b, gpio_c, gpio_d, gpio_e, gpio_f
+        input sys_clk, rst,
+    input[31:0] gpio_a, gpio_b, gpio_c, gpio_d, gpio_e, gpio_f
 );
     
-    reg sys_clk;
-    reg rst;
+//    reg sys_clk;
+//    reg rst;
     
-    wire clk, uart_clk, systick_clk, rd_write_enable, rt_write_enable, alu_en, mem_write_en, io_write_en, is_sw, is_io_target, is_usage_fault, interrupt;
+    wire clk, uart_clk, systick_clk, rd_write_enable, rt_write_enable, alu_en, mem_write_en, io_write_en, is_sw, is_io_target, is_usage_fault;
     wire [1:0] alu_type;
     
     
-    wire[31:0] pc, epc_sim, next_pc_sim, instruction_sim, seg_sim;
+    wire[31:0] pc, instruction_sim;
     
     wire[4:0] rd, rs, rt, shamt;
     wire[5:0] funct, opcode;
     wire[9:0] io_access_target;
     wire[15:0] immediate;
     wire[31:0] rs_val, rt_val, reg_write_val;
-    wire[31:0] result, return_addr;
+    wire[31:0] result;
     wire[31:0] mem_access_target, mem_write_val, mem_io_read_val, mem_read_val, io_read_val;
     
     reg[8:0] pending_interrupts;
+   
     
     assign reg_write_val = (opcode == 6'b10_0011) ? mem_io_read_val : 
                           (opcode == 6'b00_0011) ? return_addr : result;
@@ -53,10 +54,14 @@ module cpu_top(
     assign clk = sys_clk;
     clock_div #(.period(100), .width(7)) cd(sys_clk, rst, systick_clk);
     
+    wire need_jump;
+    wire[31:0] tgt;
+    wire[8:0] int_en;
     ifetch i_fetch(
        .clk(clk),
        .rst(rst),
        .result(result),
+       .pending_interrupts(pending_interrupts),
        .alu_en(alu_en),
        .alu_type(alu_type), // 1 R 0 I
        .rs(rs),
@@ -66,9 +71,11 @@ module cpu_top(
        .shamt(shamt),
        .funct(funct),
        .opcode(opcode),
-       .return_addr(return_addr),
        .pc_sim(pc),
-       .instruction(instruction_sim)
+       .instruction(instruction_sim),
+       .need_exception_jump(need_jump),
+       .target_addr(tgt),
+       .int_en(int_en)
     );
     registers regs(
        .clk(clk),
@@ -83,8 +90,7 @@ module cpu_top(
        .write_val(reg_write_val),
        .pc(pc),
        .rs_val(rs_val),
-       .rt_val(rt_val),
-       .epc_sim(epc_sim)
+       .rt_val(rt_val)
     );
     alu alu_a(
        .alu_en(alu_en),
@@ -124,23 +130,22 @@ module cpu_top(
     );
     
     always @(posedge systick_clk) begin
-        pending_interrupt[0] = 1;
+        pending_interrupts[0] = 1;
     end
-
-    always @(negedge clk) begin
-        pending_interrupt <= 0;
+    always @(posedge clk) begin
+        pending_interrupts <= 0;
     end
-    
     always @(negedge rst) begin
-        pending_interrupt <= 0;
+        pending_interrupts <= 0;
     end
     
-    initial begin 
-        sys_clk = 0;
-        rst = 1;
-        #11 rst = 0;
-    end
     
-    always #1 sys_clk = ~sys_clk;
+//    initial begin 
+//        sys_clk = 0;
+//        rst = 1;
+//        #11 rst = 0;
+//    end
+    
+//    always #3 sys_clk = ~sys_clk;
     
 endmodule
