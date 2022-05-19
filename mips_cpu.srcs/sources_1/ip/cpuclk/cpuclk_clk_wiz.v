@@ -58,6 +58,7 @@
 //----------------------------------------------------------------------------
 // _____clk____23.000______0.000______50.0______342.117____303.235
 // uart_clk____10.000______0.000______50.0______391.228____303.235
+// nvic_clk____46.000______0.000______50.0______300.552____303.235
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -72,6 +73,7 @@ module cpuclk_clk_wiz
   // Clock out ports
   output        clk,
   output        uart_clk,
+  output        nvic_clk,
   input         sys_clk
  );
   // Input buffering
@@ -94,7 +96,7 @@ wire clk_in2_cpuclk;
 
   wire        clk_cpuclk;
   wire        uart_clk_cpuclk;
-  wire        clk_out3_cpuclk;
+  wire        nvic_clk_cpuclk;
   wire        clk_out4_cpuclk;
   wire        clk_out5_cpuclk;
   wire        clk_out6_cpuclk;
@@ -107,7 +109,6 @@ wire clk_in2_cpuclk;
   wire        clkfbout_cpuclk;
   wire        clkfbout_buf_cpuclk;
   wire        clkfboutb_unused;
-   wire clkout2_unused;
    wire clkout3_unused;
    wire clkout4_unused;
   wire        clkout5_unused;
@@ -128,6 +129,9 @@ wire clk_in2_cpuclk;
     .CLKOUT1_DIVIDE       (92),
     .CLKOUT1_PHASE        (0.000),
     .CLKOUT1_DUTY_CYCLE   (0.500),
+    .CLKOUT2_DIVIDE       (20),
+    .CLKOUT2_PHASE        (0.000),
+    .CLKOUT2_DUTY_CYCLE   (0.500),
     .CLKIN1_PERIOD        (10.000))
   plle2_adv_inst
     // Output clocks
@@ -135,7 +139,7 @@ wire clk_in2_cpuclk;
     .CLKFBOUT            (clkfbout_cpuclk),
     .CLKOUT0             (clk_cpuclk),
     .CLKOUT1             (uart_clk_cpuclk),
-    .CLKOUT2             (clkout2_unused),
+    .CLKOUT2             (nvic_clk_cpuclk),
     .CLKOUT3             (clkout3_unused),
     .CLKOUT4             (clkout4_unused),
     .CLKOUT5             (clkout5_unused),
@@ -180,6 +184,10 @@ wire clk_in2_cpuclk;
   BUFG clkout2_buf
    (.O   (uart_clk),
     .I   (uart_clk_cpuclk));
+
+  BUFG clkout3_buf
+   (.O   (nvic_clk),
+    .I   (nvic_clk_cpuclk));
 
 
 

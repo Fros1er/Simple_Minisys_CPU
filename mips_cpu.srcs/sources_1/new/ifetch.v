@@ -1,10 +1,10 @@
 `timescale 1ns / 1ps
 
 module ifetch(
-    input clk, nvic_clk,
-    input rst,
+    input clk, nvic_clk, rst,
     input [31:0] result,
     input [8:0] pending_interrupts,
+    input is_usage_fault,
     output alu_en,
     output [1:0] alu_type, // 01 R 00 I 10 coproc1
     output [4:0] rs,
@@ -17,7 +17,7 @@ module ifetch(
     output reg [31:0] return_addr,
     output [31:0] pc_sim,
     output [31:0] instruction,
-    output need_exception_jump,
+    output need_exception_jump, is_eret,
     output [31:0] target_addr,
     output[8:0] int_en, arr,
     output[3:0]curr, next
@@ -25,7 +25,7 @@ module ifetch(
     reg ready;
     reg[31:0] pc;
     wire[31:0] next_pc, pcplus4;
-    wire is_trap, is_eret;
+    wire is_trap;
     
     assign pc_sim = pc;
     assign is_eret = instruction == 32'h42000018;
@@ -48,7 +48,7 @@ module ifetch(
     assign alu_type = (opcode == 6'b00_0000) ? 2'b01 :
                       (opcode == 6'b01_0000) ? 2'b10 : 2'b00;
     
-    // ä¸è?ƒè™‘å¼‚å¸¸çš„next_pc
+    // ²»¿¼ÂÇÒì³£µÄnext_pc
     assign next_pc = (instruction[31:28] == 4'b00_01 && result[0] == 1) ? pc + 4 + {{14{instruction[15]}}, instruction[15:0], 2'b00} : // bne or beq
                      (instruction[31:27] == 6'b00_001) ? {pcplus4[31:28], instruction[25:0], 2'b00} : // jump and jal
                      (instruction[31:26] == 6'b00_0000 && instruction[5:0] == 6'b00_1000) ? result : // jr
@@ -62,7 +62,7 @@ module ifetch(
         .rst(rst),
         .ready(ready),
         .next_pc(next_pc),
-        .arriving_interrupts(pending_interrupts | {1'b0, is_trap, 7'b0}),
+        .arriving_interrupts(pending_interrupts | {is_usage_fault, is_trap & result[0], 7'b0}),
         .is_eret(is_eret),
         .need_jump(need_exception_jump),
         .target_addr(target_addr),
@@ -76,7 +76,7 @@ module ifetch(
     end
     
     always @(negedge clk) begin
-        return_addr <= pc + 8;
+        return_addr <= pc + 4;
         if (ready) begin
             pc = (need_exception_jump ? target_addr : next_pc);
         end

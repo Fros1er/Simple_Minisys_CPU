@@ -22,36 +22,40 @@ module nvic(
 // 如果是eret, next_pc是epc_all[current]。否则外部传过来。
 
 reg[31:0] epc_all[8:0];
-wire[31:0] next_pc_with_eret;
 reg[3:0] current_interrupt;
 wire[3:0] next_interrupt;
 reg[8:0] interrupt_en;
+wire[9:0] highest_bit;
 
 assign arr = arriving_interrupts;
 assign curr = current_interrupt;
 assign next = next_interrupt;
-
 assign int_en = interrupt_en;
 
-assign next_pc_with_eret = is_eret ? epc_all[current_interrupt] : next_pc;
-assign target_addr = interrupt_en == 0 ? next_pc_with_eret : (32'h4180 + {next_interrupt - 1, 2'b00});
-assign need_jump = current_interrupt != next_interrupt;
+assign target_addr = interrupt_en == 0 ? epc_all[current_interrupt - 1] : (32'h4180 + {next_interrupt - 1, 2'b00});
+assign need_jump = next_interrupt > current_interrupt || is_eret;
 
 priority_encoder enc(interrupt_en, next_interrupt);
 
+assign highest_bit = 10'b0000_0000_01 << current_interrupt;
+
 integer i;
-always @(posedge nvic_clk) begin
+always @(negedge nvic_clk) begin
     if (ready) begin
         if (is_eret) begin
-            interrupt_en[current_interrupt - 1] <= 0;
+            interrupt_en = (interrupt_en | arriving_interrupts) & (~highest_bit[9:1]);
         end
-        interrupt_en = interrupt_en | arriving_interrupts;
+        else begin
+            interrupt_en = interrupt_en | arriving_interrupts;
+        end
     end
 end
 
 always @(negedge clk) begin
+    if (need_jump && interrupt_en != 0) begin
+        epc_all[next_interrupt - 1] = is_eret ? epc_all[current_interrupt - 1] : next_pc;
+    end
     current_interrupt = next_interrupt;
-    epc_all[next_interrupt - 1] <= next_pc_with_eret;
 end
 
 always @(negedge rst) begin

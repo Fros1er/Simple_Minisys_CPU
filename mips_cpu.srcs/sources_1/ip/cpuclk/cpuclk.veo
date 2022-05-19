@@ -57,6 +57,7 @@
 //----------------------------------------------------------------------------
 // _____clk____23.000______0.000______50.0______342.117____303.235
 // uart_clk____10.000______0.000______50.0______391.228____303.235
+// nvic_clk____46.000______0.000______50.0______300.552____303.235
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -74,6 +75,7 @@
     // Clock out ports
     .clk(clk),     // output clk
     .uart_clk(uart_clk),     // output uart_clk
+    .nvic_clk(nvic_clk),     // output nvic_clk
    // Clock in ports
     .sys_clk(sys_clk));      // input sys_clk
 // INST_TAG_END ------ End INSTANTIATION Template ---------

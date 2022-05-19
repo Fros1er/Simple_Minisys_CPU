@@ -2,7 +2,7 @@
 
 module cpu_top(
 //        input sys_clk, rst,
-    input[31:0] gpio_a, gpio_b, gpio_c, gpio_d, gpio_e, gpio_f
+    output[31:0] gpio_a, gpio_b, gpio_c, gpio_d, gpio_e, gpio_f
 );
     
     reg sys_clk;
@@ -40,9 +40,6 @@ module cpu_top(
     assign io_access_target = mem_access_target[9:0];
     assign mem_io_read_val = is_io_target ? io_read_val : mem_read_val;
     
-    // assign interrupt = ((is_trap && result) || is_usage_fault || pending_interrupt);
-//    assign interrupt = !kernel_mode && ((is_trap && result) || is_usage_fault);
-    
 //    cpuclk clk_d(
 //        .sys_clk(sys_clk),
 //        .clk(clk),
@@ -56,7 +53,7 @@ module cpu_top(
     //assign clk = sys_clk;
     clock_div #(.period(100), .width(7)) cd(sys_clk, rst, systick_clk);
     
-    wire need_jump;
+    wire need_jump, is_eret;
     wire[31:0] tgt;
     wire[8:0] int_en, arr;
     wire[3:0] curr,next;
@@ -66,6 +63,7 @@ module cpu_top(
        .rst(rst),
        .result(result),
        .pending_interrupts(pending_interrupts),
+       .is_usage_fault(is_usage_fault),
        .alu_en(alu_en),
        .alu_type(alu_type), // 1 R 0 I
        .return_addr(return_addr),
@@ -81,7 +79,7 @@ module cpu_top(
        .need_exception_jump(need_jump),
        .target_addr(tgt),
        .int_en(int_en),
-       .arr(arr),.curr(curr),.next(next)
+       .arr(arr),.curr(curr),.next(next),.is_eret(is_eret)
     );
     registers regs(
        .clk(clk),
@@ -91,8 +89,6 @@ module cpu_top(
        .rd(rd),
        .rd_write_enable(rd_write_enable),
        .rt_write_enable(rt_write_enable),
-    //    .move_enable(alu_type == 2'b10 && rs[4] != 1), //coproc0 && not mfc, mtc
-    //    .move_direction(rs == 5'b00100), // mtc0 1 mfc0 0
        .write_val(reg_write_val),
        .pc(pc),
        .rs_val(rs_val),
