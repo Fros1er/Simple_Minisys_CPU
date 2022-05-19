@@ -18,7 +18,7 @@ module ifetch(
     output [31:0] pc_sim,
     output [31:0] instruction,
     output need_exception_jump, is_eret,
-    output [31:0] target_addr,
+    output [31:0] target_addr, epc0,
     output[8:0] int_en, arr,
     output[3:0]curr, next
 );
@@ -42,13 +42,14 @@ module ifetch(
     assign shamt = instruction[10:6];
     assign is_trap = (opcode == 6'b0 && funct[5:2] == 4'b1101) || // teq, tne
                      opcode == 6'b00_0001; // teqi, tnei
-    assign alu_en = opcode != 6'b00_0010 && 
+    assign alu_en = instruction != 0 &&
+                    opcode != 6'b00_0010 && 
                     opcode != 6'b00_0011 &&
                     !(opcode == 6'b01_0000 && !is_eret); // coproc0
     assign alu_type = (opcode == 6'b00_0000) ? 2'b01 :
                       (opcode == 6'b01_0000) ? 2'b10 : 2'b00;
     
-    // ≤ªøº¬«“Ï≥£µƒnext_pc
+    // ‰∏çË?ÉËôëÂºÇÂ∏∏ÁöÑnext_pc
     assign next_pc = (instruction[31:28] == 4'b00_01 && result[0] == 1) ? pc + 4 + {{14{instruction[15]}}, instruction[15:0], 2'b00} : // bne or beq
                      (instruction[31:27] == 6'b00_001) ? {pcplus4[31:28], instruction[25:0], 2'b00} : // jump and jal
                      (instruction[31:26] == 6'b00_0000 && instruction[5:0] == 6'b00_1000) ? result : // jr
@@ -68,7 +69,7 @@ module ifetch(
         .target_addr(target_addr),
         .int_en(int_en),
         .arr(arr),
-        .curr(curr),.next(next)
+        .curr(curr),.next(next),.epc0(epc0)
     );
     
     always @(posedge clk) begin

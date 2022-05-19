@@ -54,7 +54,7 @@ module cpu_top(
     clock_div #(.period(100), .width(7)) cd(sys_clk, rst, systick_clk);
     
     wire need_jump, is_eret;
-    wire[31:0] tgt;
+    wire[31:0] tgt, epc0;
     wire[8:0] int_en, arr;
     wire[3:0] curr,next;
     ifetch i_fetch(
@@ -79,7 +79,7 @@ module cpu_top(
        .need_exception_jump(need_jump),
        .target_addr(tgt),
        .int_en(int_en),
-       .arr(arr),.curr(curr),.next(next),.is_eret(is_eret)
+       .arr(arr),.curr(curr),.next(next),.is_eret(is_eret),.epc0(epc0)
     );
     registers regs(
        .clk(clk),

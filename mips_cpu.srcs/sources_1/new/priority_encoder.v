@@ -25,19 +25,17 @@ module priority_encoder(
     output reg [3:0] out
     );
     
-    always @ (in)
+    always @ (*)
     begin
-    case (in)
-        9'b000000001: out = 4'b001;
-        9'b00000001x: out = 4'b010;
-        9'b0000001xx: out = 4'b011;
-        9'b000001xxx: out = 4'b100;
-        9'b00001xxxx: out = 4'b101;
-        9'b0001xxxxx: out = 4'b110;
-        9'b001xxxxxx: out = 4'b111;
-        9'b01xxxxxxx: out = 4'b1000;
-        9'b1xxxxxxxx: out = 4'b1001;
-        default: out=4'b0;
-    endcase
+        if (in[8] == 1) out = 4'b1001;
+        else if (in[7] == 1) out = 4'b1000;
+        else if (in[6] == 1) out = 4'b0111;
+        else if (in[5] == 1) out = 4'b0110;
+        else if (in[4] == 1) out = 4'b0101;
+        else if (in[3] == 1) out = 4'b0100;
+        else if (in[2] == 1) out = 4'b0011;
+        else if (in[1] == 1) out = 4'b0010;
+        else if (in[0] == 1) out = 4'b0001;
+        else out = 4'b0000;
     end
 endmodule

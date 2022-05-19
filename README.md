@@ -29,6 +29,7 @@
 - [x] nor
 - [x] slt
 - [x] sltu
+- [x] nop
 
 #### I types
 - [x] beq
@@ -76,16 +77,16 @@
 - [x] eret 010000 1 19'0 011000
 
 ### About Exception
-- [ ] systick
-- [ ] fault
+- [x] systick
+- [x] fault
 - [x] trap
 - [ ] external
-- [ ] NVIC, without custom priority...
+- [x] NVIC, without custom priority...
 
 ### IVT ktext里直接写jump模拟
-- [ ] systick_handler 0x4180
-- [ ] usagefault_handler 0x4184
-- [ ] trap_handler 0x4188
+- [x] systick_handler
+- [x] usagefault_handler
+- [x] trap_handler
 - [ ] exti0_handler * 6
 
 ### IO
