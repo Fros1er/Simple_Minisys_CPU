@@ -72,8 +72,11 @@ module ifetch(
         .curr(curr),.next(next),.epc0(epc0)
     );
     
-    always @(posedge clk) begin
-        ready <= 1;
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            pc = 32'b0;
+        end
+        ready <= rst ? 0 : 1;
     end
     
     always @(negedge clk) begin
@@ -81,11 +84,6 @@ module ifetch(
         if (ready) begin
             pc = (need_exception_jump ? target_addr : next_pc);
         end
-    end
-    
-    always @(negedge rst) begin
-        pc = 32'b0;
-        ready <= 0;
     end
 
 endmodule

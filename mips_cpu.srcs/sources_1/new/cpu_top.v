@@ -1,14 +1,13 @@
 `timescale 1ns / 1ps
 
 module cpu_top(
-//        input sys_clk, rst,
-    output[31:0] gpio_a, gpio_b, gpio_c, gpio_d, gpio_e, gpio_f
+    input sys_clk, rst, rx, tx,
+    inout[15:0] gpio_a, gpio_b, gpio_c, gpio_d, gpio_e, gpio_f
 );
     
-    reg sys_clk;
-    reg rst;
+//    reg sys_clk, rst;
     
-    wire clk, nvic_clk, uart_clk, systick_clk, rd_write_enable, rt_write_enable, alu_en, mem_write_en, io_write_en, is_sw, is_io_target, is_usage_fault;
+    wire clk, nvic_clk, uart_clk, systick_clk, rd_write_enable, rt_write_enable, alu_en, mem_write_en, io_write_en, is_sw, is_io_target, is_usage_fault, clk_t;
     wire [1:0] alu_type;
     
     
@@ -40,18 +39,19 @@ module cpu_top(
     assign io_access_target = mem_access_target[9:0];
     assign mem_io_read_val = is_io_target ? io_read_val : mem_read_val;
     
-//    cpuclk clk_d(
-//        .sys_clk(sys_clk),
-//        .clk(clk),
-//        .uart_clk(uart_clk)
-//    );
+    cpuclk clk_d(
+        .sys_clk(sys_clk),
+        .clk(clk),
+        .uart_clk(uart_clk),
+        .nvic_clk(nvic_clk)
+    );
     
-//    clock_div #(.period(100), .width(7)) cda(uart_clk, rst, clk_t);
-//    clock_div #(.period(100), .width(7)) cd(clk_t, rst, systick_clk);
-    clock_div #(.period(2), .width(2)) cd_d(sys_clk, rst, clk);
-    assign nvic_clk = sys_clk;
-    //assign clk = sys_clk;
-    clock_div #(.period(100), .width(7)) cd(sys_clk, rst, systick_clk);
+    clock_div #(.period(100), .width(7)) cda(uart_clk, rst, clk_t);
+    clock_div #(.period(100), .width(7)) cd(clk_t, rst, systick_clk);
+    
+//    clock_div #(.period(2), .width(2)) cd_d(sys_clk, rst, clk);
+//    assign nvic_clk = sys_clk;
+//    clock_div #(.period(30), .width(7)) cd(sys_clk, rst, systick_clk);
     
     wire need_jump, is_eret;
     wire[31:0] tgt, epc0;
@@ -132,22 +132,25 @@ module cpu_top(
     );
     
     always @(posedge systick_clk) begin
-        pending_interrupts[0] = 1;
+        pending_interrupts[0] <= 1;
     end
+    integer i;
     always @(posedge clk) begin
-        pending_interrupts <= 0;
+        for (i = 0; i < 9; i = i + 1) begin
+            if (pending_interrupts[i]) pending_interrupts[i] <= 0;
+        end
     end
     always @(negedge rst) begin
         pending_interrupts <= 0;
     end
     
     
-    initial begin 
-        sys_clk = 0;
-        rst = 1;
-        #11 rst = 0;
-    end
+//    initial begin 
+//        sys_clk = 0;
+//        rst = 1;
+//        #11 rst = 0;
+//    end
     
-    always #3 sys_clk = ~sys_clk;
+//    always #3 sys_clk = ~sys_clk;
     
 endmodule

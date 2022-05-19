@@ -23,19 +23,21 @@ module nvic(
 
 reg[31:0] epc_all[8:0];
 reg[3:0] current_interrupt;
-wire[3:0] next_interrupt;
+wire[3:0] next_interrupt, nextminus1, currminus1;
 reg[8:0] interrupt_en, interrupt_pending;
 wire[9:0] highest_bit;
-
 reg eret_lock;
 
-assign arr = arriving_interrupts;
-assign curr = current_interrupt;
-assign next = next_interrupt;
-assign int_en = interrupt_en;
-assign epc0 = epc_all[0];
+assign nextminus1 = next_interrupt - 1;
+assign currminus1 = current_interrupt - 1;
 
-assign target_addr = (interrupt_en == 0 || interrupt_pending[next_interrupt - 1]) ? epc_all[current_interrupt - 1] : (32'h4180 + {next_interrupt - 1, 2'b00});
+//assign arr = arriving_interrupts;
+//assign curr = current_interrupt;
+//assign next = next_interrupt;
+//assign int_en = interrupt_en;
+//assign epc0 = epc_all[0];
+
+assign target_addr = (interrupt_en == 0 || interrupt_pending[nextminus1]) ? epc_all[currminus1] : (32'h4180 + {nextminus1, 2'b00});
 assign need_jump = next_interrupt > current_interrupt || is_eret;
 
 priority_encoder enc(interrupt_en, next_interrupt);
@@ -59,24 +61,25 @@ always @(posedge clk) begin
     eret_lock = 0;
 end
 
-always @(negedge clk) begin
-    if (is_eret) begin
-        interrupt_pending[current_interrupt - 1] = 0;
+always @(negedge clk or posedge rst) begin
+    if (rst) begin
+        eret_lock = 0;
+        current_interrupt <= 0;
+        interrupt_en <= 0;
+        interrupt_pending <= 0;
+        for (i = 0; i < 9; i = i + 1) begin
+            epc_all[i] <= 0;
+        end
     end
-    if (need_jump && interrupt_en != 0 &&  interrupt_pending[next_interrupt - 1] == 0) begin
-        interrupt_pending[next_interrupt - 1] = 1;
-        epc_all[next_interrupt - 1] = is_eret ? epc_all[current_interrupt - 1] : next_pc;
-    end
-    current_interrupt = next_interrupt;
-end
-
-always @(negedge rst) begin
-    current_interrupt = 0;
-    interrupt_en = 0;
-    eret_lock = 0;
-    interrupt_pending = 0;
-    for (i = 0; i < 9; i = i + 1) begin
-        epc_all[i] <= 0;
+    else begin
+        if (is_eret) begin
+            interrupt_pending[currminus1] = 0;
+        end
+        if (need_jump && interrupt_en != 0 &&  interrupt_pending[nextminus1] == 0) begin
+            interrupt_pending[nextminus1] = 1;
+            epc_all[nextminus1] = is_eret ? epc_all[currminus1] : next_pc;
+        end
+        current_interrupt = next_interrupt;
     end
 end
 

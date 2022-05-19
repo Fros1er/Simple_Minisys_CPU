@@ -52,6 +52,7 @@
 - [x] jal
 
 ### IO
+- [x] constraints
 - [ ] Seg tubes
 - [ ] switches
 - [ ] UART Download
@@ -60,10 +61,10 @@
 
 ### Basics
 - [x] ~~minisys_extended to coe compiler~~ Use mars instead
-- [ ] c to minisys_extended compiler (opt)
+- [ ] ~~c to minisys_extended compiler (opt)~~
 
 ### Registers
-- [x] EPC $14
+- [x] ~~EPC $14~~ NVIC now
 
 ### Instructions
 
@@ -91,7 +92,6 @@
 
 ### IO
 - [ ] GPIO
-- [ ] LED1 拨码开关1 按键开关1 键盘1 数码管1 EJTAG1 共计6bytes
 
 ### Programs (opt)
 - [ ] serial echo server 单独写个模块用来搞时钟？
