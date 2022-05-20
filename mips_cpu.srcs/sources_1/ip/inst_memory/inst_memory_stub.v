@@ -1,7 +1,7 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-// Date        : Fri May 20 19:31:51 2022
+// Date        : Sat May 21 00:31:35 2022
 // Host        : DESKTOP-AK5GC2F running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/inst_memory/inst_memory_stub.v

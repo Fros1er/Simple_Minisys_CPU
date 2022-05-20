@@ -1,7 +1,4 @@
-
-// file: cpuclk.v
-// 
-// (c) Copyright 2008 - 2013 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -47,46 +44,26 @@
 // THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
 // PART OF THIS FILE AT ALL TIMES.
 // 
-//----------------------------------------------------------------------------
-// User entered comments
-//----------------------------------------------------------------------------
-// None
-//
-//----------------------------------------------------------------------------
-//  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
-//   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
-//----------------------------------------------------------------------------
-// _____clk____23.000______0.000______50.0______342.117____303.235
-// uart_clk____10.000______0.000______50.0______391.228____303.235
-// nvic_clk____46.000______0.000______50.0______300.552____303.235
-//
-//----------------------------------------------------------------------------
-// Input Clock   Freq (MHz)    Input Jitter (UI)
-//----------------------------------------------------------------------------
-// __primary_________100.000____________0.010
+// DO NOT MODIFY THIS FILE.
 
-`timescale 1ps/1ps
+// IP VLNV: SEU_CSE_507:user:uart_bmpg:1.3
+// IP Revision: 8
 
-(* CORE_GENERATION_INFO = "cpuclk,clk_wiz_v5_4_3_0,{component_name=cpuclk,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=PLL,num_out_clk=3,clkin1_period=10.000,clkin2_period=10.000,use_power_down=false,use_reset=false,use_locked=false,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}" *)
+// The following must be inserted into your Verilog file for this
+// core to be instantiated. Change the instance name and port connections
+// (in parentheses) to your own signal names.
 
-module cpuclk 
- (
-  // Clock out ports
-  output        clk,
-  output        uart_clk,
-  output        nvic_clk,
- // Clock in ports
-  input         sys_clk
- );
+//----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
+uart_bmpg_0 your_instance_name (
+  .upg_clk_i(upg_clk_i),    // input wire upg_clk_i
+  .upg_rst_i(upg_rst_i),    // input wire upg_rst_i
+  .upg_clk_o(upg_clk_o),    // output wire upg_clk_o
+  .upg_wen_o(upg_wen_o),    // output wire upg_wen_o
+  .upg_adr_o(upg_adr_o),    // output wire [14 : 0] upg_adr_o
+  .upg_dat_o(upg_dat_o),    // output wire [31 : 0] upg_dat_o
+  .upg_done_o(upg_done_o),  // output wire upg_done_o
+  .upg_rx_i(upg_rx_i),      // input wire upg_rx_i
+  .upg_tx_o(upg_tx_o)      // output wire upg_tx_o
+);
+// INST_TAG_END ------ End INSTANTIATION Template ---------
 
-  cpuclk_clk_wiz inst
-  (
-  // Clock out ports  
-  .clk(clk),
-  .uart_clk(uart_clk),
-  .nvic_clk(nvic_clk),
- // Clock in ports
-  .sys_clk(sys_clk)
-  );
-
-endmodule

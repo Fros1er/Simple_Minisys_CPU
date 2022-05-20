@@ -1,20 +1,23 @@
 `timescale 1ns / 1ps
 
 module cpu_top(
-    input sys_clk, rst, rx, tx,
+    input sys_clk, rst_in, start_pg,
+    input rx,
+    output start_pg_led, tx,
     inout[15:0] gpio_a_out, gpio_b_out, gpio_c_out, 
     inout[13:0] gpio_d_out, 
     inout[7:0] gpio_e_out
 //    , gpio_f_out
 );
+//    reg sys_clk, rst_in, start_pg;
+
+    assign start_pg_led = start_pg;
     
-//    reg sys_clk, rst;
-    
-    wire clk, nvic_clk, uart_clk, systick_clk, rd_write_enable, rt_write_enable, alu_en, mem_write_en, 
+    wire rst, clk, nvic_clk, uart_clk, systick_clk, rd_write_enable, rt_write_enable, alu_en, mem_write_en, 
         io_write_en, is_sw, is_io_target, is_usage_fault, curr_gpio_type;
     wire [1:0] alu_type;
     wire[4:0] rd, rs, rt, shamt;
-    wire[5:0] funct, opcode, gpio_types;
+    wire[5:0] funct, opcode, gpio_types, exti_enable;
     wire[9:0] io_access_target;
     wire[15:0] immediate, io_read_val, exti_io_read_val, gpio_a, gpio_b, gpio_c, gpio_d, gpio_e, gpio_f;
     wire[31:0] rs_val, rt_val, reg_write_val;
@@ -23,7 +26,15 @@ module cpu_top(
     wire[31:0] return_addr;
     
     reg[8:0] pending_interrupts;
-   
+    reg[15:0] gpio_in_buffers[5:0];
+    reg uart_rst;
+    
+    wire spg_bufg, uart_clk_o, uart_write_en, uart_done, program_off;
+    wire [14:0] uart_addr;
+    wire [31:0] uart_data;
+
+    assign rst = rst_in | !uart_rst;
+    assign program_off = uart_rst | (~uart_rst & uart_done);
     
     assign reg_write_val = (opcode == 6'b10_0011) ? mem_io_read_val : 
                           (opcode == 6'b00_0011) ? return_addr : result;
@@ -67,6 +78,7 @@ module cpu_top(
 //    assign nvic_clk = sys_clk;
    clock_div #(.period(5), .width(4)) cd_a(sys_clk, rst, nvic_clk);
    clock_div #(.period(2), .width(3)) cd_b(nvic_clk, rst, clk);
+   clock_div #(.period(10), .width(5)) cd_c(sys_clk, rst, uart_clk);
    systick_generator systick_gen(clk, rst, systick_clk);
     
 //     wire need_jump, is_eret;
@@ -89,7 +101,12 @@ module cpu_top(
        .immediate(immediate),
        .shamt(shamt),
        .funct(funct),
-       .opcode(opcode)
+       .opcode(opcode),
+       .program_off(program_off),
+      .uart_clk(uart_clk_o),
+      .uart_write_en(uart_write_en & !uart_addr[13]), 
+      .uart_addr(uart_addr),
+      .uart_data(uart_data)
 //        ,.pc_sim(pc),.instruction(instruction_sim),.need_exception_jump(need_jump),.target_addr(tgt),.int_en(int_en),.arr(arr),.curr(curr),.next(next),.is_eret(is_eret),.epc0(epc0)
     );
 
@@ -126,7 +143,12 @@ module cpu_top(
        .write_en(mem_write_en),
        .write_val(mem_write_val),
        .access_target(mem_access_target),
-       .read_val(mem_read_val)
+       .read_val(mem_read_val),
+       .program_off(program_off),
+       .uart_clk(uart_clk_o),
+       .uart_write_en(uart_write_en & uart_addr[13]), 
+       .uart_addr(uart_addr),
+       .uart_data(uart_data)
     );
     
     io io_a(
@@ -143,30 +165,89 @@ module cpu_top(
        .gpio_e(gpio_e),
        .gpio_f(gpio_f),
        .curr_gpio_type(curr_gpio_type),
-       .gpio_types(gpio_types)
+       .gpio_types(gpio_types),
+       .exti_enable(exti_enable)
     );
+    
+    
+    BUFG U1(.I(start_pg), .O(spg_bufg));
+    uart_bmpg_0 uart(
+        .upg_clk_i(uart_clk),
+        .upg_rst_i(uart_rst),
+        .upg_rx_i(rx),
+        .upg_clk_o(uart_clk_o),
+        .upg_wen_o(uart_write_en),
+        .upg_adr_o(uart_addr),
+        .upg_dat_o(uart_data),
+        .upg_done_o(uart_done),
+        .upg_tx_o(tx)
+    );
+    
+    always @ (posedge sys_clk) 
+    begin 
+        if (spg_bufg) 
+            uart_rst = 0; 
+        if (rst_in) 
+            uart_rst = 1; 
+    end
     
      always @(*) begin
          pending_interrupts[0] = systick_clk;
      end
 
-    // integer i;
-    // always @(posedge clk) begin
-    //     for (i = 0; i < 9; i = i + 1) begin
-    //         if (pending_interrupts[i]) pending_interrupts[i] <= 0;
-    //     end
-    // end
+     integer i;
+     always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            pending_interrupts[8:1] <= 0;
+            for (i = 0; i < 6; i = i + 1) begin
+                gpio_in_buffers[i] <= 0;
+            end
+        end
+        else begin
+            if (gpio_a_out != gpio_in_buffers[0] && exti_enable[0]) begin
+                pending_interrupts[1] <= 1;
+                gpio_in_buffers[0] <= gpio_a_out;
+            end
+            else pending_interrupts[1] <= 0;
 
+            if (gpio_b_out != gpio_in_buffers[1] && exti_enable[1]) begin
+                pending_interrupts[2] <= 1;
+                gpio_in_buffers[1] <= gpio_b_out;
+            end
+            else pending_interrupts[2] <= 0;
 
-    always @(negedge rst) begin
-        pending_interrupts[8:1] <= 0;
-    end
+            if (gpio_c_out != gpio_in_buffers[2] && exti_enable[2]) begin
+                pending_interrupts[3] <= 1;
+                gpio_in_buffers[2] <= gpio_c_out;
+            end
+            else pending_interrupts[3] <= 0;
+
+            if (gpio_d_out != gpio_in_buffers[3] && exti_enable[3]) begin
+                pending_interrupts[4] <= 1;
+                gpio_in_buffers[3] <= gpio_d_out;
+            end
+            else pending_interrupts[4] <= 0;
+
+            if (gpio_e_out != gpio_in_buffers[4] && exti_enable[4]) begin
+                pending_interrupts[5] <= 1;
+                gpio_in_buffers[4] <= gpio_e_out;
+            end
+            else pending_interrupts[5] <= 0;
+
+            // if (gpio_f_out != gpio_in_buffers[5]) && exti_enable[5] begin
+            //     pending_interrupts[6] <= 1;
+            //     gpio_in_buffers[5] <= gpio_f_out;
+            // end
+            // else pending_interrupts[6] <= 0;
+        end
+     end
     
     
 //    initial begin 
 //        sys_clk = 0;
-//        rst = 1;
-//        #11 rst = 0;
+//        rst_in = 1;
+//        start_pg = 0;
+//        #11 rst_in = 0;
 //    end
     
 //    always #3 sys_clk = ~sys_clk;

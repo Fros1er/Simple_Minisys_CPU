@@ -5,11 +5,11 @@ module io(
     input rst,
     input write_en,
     input[9:0] access_target,
-    input[31:0] write_val,
     output[15:0] gpio_a, gpio_b, gpio_c, gpio_d, gpio_e, gpio_f,
+    input[31:0] write_val,
     output[31:0] buffer_read_val,
     output curr_gpio_type,
-    output[5:0] gpio_types
+    output[5:0] gpio_types, exti_enable
 );
     reg[15:0] io_buffer[5:0];
     reg[5:0] exti_reg[1:0];
@@ -23,6 +23,7 @@ module io(
     assign curr_gpio_type = access_target[5] ? 1 : exti_reg[0][access_target[4:2]];
     
     assign gpio_types = exti_reg[0];
+    assign exti_enable = exti_reg[1];
     assign buffer_read_val = (access_target[5:2] == 4'b0000) ? gpio_a :
                       (access_target[5:2] == 4'b0001) ? gpio_b :
                       (access_target[5:2] == 4'b0010) ? gpio_c :
@@ -37,7 +38,7 @@ module io(
             for (i = 0; i < 6; i = i + 1) begin
                     io_buffer[i] <= 0;
             end
-            exti_reg[0] <= 1;
+            exti_reg[0] <= 0;
             exti_reg[1] <= 0;
         end
         else begin

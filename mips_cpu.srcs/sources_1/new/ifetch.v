@@ -14,15 +14,19 @@ module ifetch(
     output [4:0] shamt,
     output [5:0] funct,
     output [5:0] opcode,
-    output reg [31:0] return_addr
-    // ,output [31:0] pc_sim, instruction,
-    // output need_exception_jump, is_eret,
-    // output [31:0] target_addr
+    output reg [31:0] return_addr,
+    // UART
+    input program_off, uart_clk, uart_write_en, 
+    input [13:0] uart_addr,
+    input [31:0] uart_data
+//     ,output [31:0] pc_sim, instruction,
+//     output need_exception_jump, is_eret, is_ready,
+//     output [31:0] target_addr
 //    ,output [31:0] epc0,
 //    output[8:0] int_en, arr,
 //    output[3:0]curr, next
 );
-    // assign pc_sim = pc;
+     
 
     wire [31:0] instruction, target_addr;
     wire is_eret, need_exception_jump;
@@ -31,12 +35,19 @@ module ifetch(
     reg[31:0] pc;
     wire[31:0] next_pc, pcplus4;
     wire is_trap;
-    
+//    assign pc_sim = pc;
+//    assign is_ready = ready;
     
     assign is_eret = instruction == 32'h42000018;
     assign pcplus4 = pc + 4;
     
-    inst_memory mem(.addra(pc >> 2), .clka(clk), .douta(instruction), .dina(), .wea(0));
+    inst_memory mem(
+        .clka(program_off ? clk : uart_clk),
+        .addra(program_off ? pc >> 2 : uart_addr),
+        .douta(instruction),
+        .dina(program_off ? 32'b0 : uart_data),
+        .wea(program_off ? 0 : uart_write_en)
+    );
     
     assign funct = instruction[5:0];
     assign opcode = instruction[31:26];
