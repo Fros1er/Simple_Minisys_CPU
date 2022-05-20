@@ -64,17 +64,6 @@ module cpu_top(
     assign gpio_e_out = gpio_types[4] ? gpio_e : 16'bz;
 //    assign gpio_f_out = gpio_types[5] ? gpio_f : 16'bz;
     
-    // cpuclk clk_d(
-    //     .sys_clk(sys_clk),
-    //     .clk(clk),
-    //     .uart_clk(uart_clk),
-    //     .nvic_clk(nvic_clk)
-    // );
-    
-    // wire clk_t;
-    // clock_div #(.period(100), .width(7)) cda(uart_clk, rst, clk_t);
-    // clock_div #(.period(100), .width(7)) cd(clk_t, rst, systick_clk);
-    
 //    assign nvic_clk = sys_clk;
    clock_div #(.period(5), .width(4)) cd_a(sys_clk, rst, nvic_clk);
    clock_div #(.period(2), .width(3)) cd_b(nvic_clk, rst, clk);
@@ -250,6 +239,6 @@ module cpu_top(
 //        #11 rst_in = 0;
 //    end
     
-//    always #3 sys_clk = ~sys_clk;
+//    always #1 sys_clk = ~sys_clk;
     
 endmodule
