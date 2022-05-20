@@ -14,24 +14,29 @@ module ifetch(
     output [4:0] shamt,
     output [5:0] funct,
     output [5:0] opcode,
-    output reg [31:0] return_addr,
-    output [31:0] pc_sim,
-    output [31:0] instruction,
-    output need_exception_jump, is_eret,
-    output [31:0] target_addr, epc0,
-    output[8:0] int_en, arr,
-    output[3:0]curr, next
+    output reg [31:0] return_addr
+    // ,output [31:0] pc_sim, instruction,
+    // output need_exception_jump, is_eret,
+    // output [31:0] target_addr
+//    ,output [31:0] epc0,
+//    output[8:0] int_en, arr,
+//    output[3:0]curr, next
 );
+    // assign pc_sim = pc;
+
+    wire [31:0] instruction, target_addr;
+    wire is_eret, need_exception_jump;
+
     reg ready;
     reg[31:0] pc;
     wire[31:0] next_pc, pcplus4;
     wire is_trap;
     
-    assign pc_sim = pc;
+    
     assign is_eret = instruction == 32'h42000018;
     assign pcplus4 = pc + 4;
     
-    inst_memory mem(.addra(pc >> 2), .clka(clk), .douta(instruction));
+    inst_memory mem(.addra(pc >> 2), .clka(clk), .douta(instruction), .dina(), .wea(0));
     
     assign funct = instruction[5:0];
     assign opcode = instruction[31:26];
@@ -49,14 +54,12 @@ module ifetch(
     assign alu_type = (opcode == 6'b00_0000) ? 2'b01 :
                       (opcode == 6'b01_0000) ? 2'b10 : 2'b00;
     
-    // ä¸è?ƒè™‘å¼‚å¸¸çš„next_pc
+    // ²»¿¼ÂÇÖĞ¶ÏµÄnext_pc
     assign next_pc = (instruction[31:28] == 4'b00_01 && result[0] == 1) ? pc + 4 + {{14{instruction[15]}}, instruction[15:0], 2'b00} : // bne or beq
                      (instruction[31:27] == 6'b00_001) ? {pcplus4[31:28], instruction[25:0], 2'b00} : // jump and jal
                      (instruction[31:26] == 6'b00_0000 && instruction[5:0] == 6'b00_1000) ? result : // jr
                      pc + 4;
     
-    //wire need_exception_jump;
-    //wire [31:0] target_addr;
     nvic nvic_t(
         .clk(clk),
         .nvic_clk(nvic_clk),
@@ -66,23 +69,24 @@ module ifetch(
         .arriving_interrupts(pending_interrupts | {is_usage_fault, is_trap & result[0], 7'b0}),
         .is_eret(is_eret),
         .need_jump(need_exception_jump),
-        .target_addr(target_addr),
-        .int_en(int_en),
-        .arr(arr),
-        .curr(curr),.next(next),.epc0(epc0)
+        .target_addr(target_addr)
+//        ,.int_en(int_en),.arr(arr),.curr(curr),.next(next),.epc0(epc0)
     );
     
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
-            pc = 32'b0;
-        end
+    always @(posedge clk) begin
         ready <= rst ? 0 : 1;
     end
     
-    always @(negedge clk) begin
-        return_addr <= pc + 4;
-        if (ready) begin
-            pc = (need_exception_jump ? target_addr : next_pc);
+    always @(negedge clk or posedge rst) begin
+        if (rst) begin
+            pc = 32'b0;
+            return_addr <= 0;
+        end 
+        else begin
+            return_addr <= pc + 4;
+            if (ready) begin
+                pc = (need_exception_jump ? target_addr : next_pc);
+            end
         end
     end
 

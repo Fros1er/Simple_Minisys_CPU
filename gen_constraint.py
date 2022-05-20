@@ -12,4 +12,5 @@ pins = "N2 M6 M5 P6 N5 J16 K18 K19"
 #     num += 1
 
 for i in range(0, 16):
-    print("set_property PULLTYPE PULLUP [get_ports {gpio_f[%d]}]" % i)
+    print("set_property PULLTYPE PULLUP [get_ports {gpio_f_out[%d]}]" % i)
+    print("set_property IOSTANDARD LVCMOS33 [get_ports {gpio_f_out[%d]}]" % i)

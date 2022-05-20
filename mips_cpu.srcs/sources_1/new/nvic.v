@@ -6,13 +6,12 @@ module nvic(
     input[8:0] arriving_interrupts,
     input is_eret,
     output need_jump,
-    output[31:0] target_addr, epc0,
-    output[8:0] int_en,
-    output[8:0] arr,
-    output[3:0] curr, next
+    output[31:0] target_addr
+//    ,output[31:0] epc0,
+//    output[8:0] int_en,
+//    output[8:0] arr,
+//    output[3:0] curr, next
 );
-
-
 
 // posedge: 更新interrupt_en。
 // comb: 如果是eret，interrupt_en置0，need_jump置1，target_addr为epc_all[current]。
@@ -26,7 +25,6 @@ reg[3:0] current_interrupt;
 wire[3:0] next_interrupt, nextminus1, currminus1;
 reg[8:0] interrupt_en, interrupt_pending;
 wire[9:0] highest_bit;
-reg eret_lock;
 
 assign nextminus1 = next_interrupt - 1;
 assign currminus1 = current_interrupt - 1;
@@ -47,25 +45,21 @@ assign highest_bit = 10'b0000_0000_01 << current_interrupt;
 integer i;
 always @(negedge nvic_clk) begin
     if (ready) begin
-        if (is_eret && !eret_lock) begin
-            eret_lock = 1;
+        if (is_eret && clk) begin
             interrupt_en = (interrupt_en | arriving_interrupts) & (~highest_bit[9:1]);
         end
         else begin
             interrupt_en = interrupt_en | arriving_interrupts;
         end
     end
-end
-
-always @(posedge clk) begin
-    eret_lock = 0;
+    else begin
+        interrupt_en <= 0;
+    end
 end
 
 always @(negedge clk or posedge rst) begin
     if (rst) begin
-        eret_lock = 0;
         current_interrupt <= 0;
-        interrupt_en <= 0;
         interrupt_pending <= 0;
         for (i = 0; i < 9; i = i + 1) begin
             epc_all[i] <= 0;

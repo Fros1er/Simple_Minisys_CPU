@@ -35,15 +35,23 @@ start:
 
 end:    j end
 
-.text 0x4180
-        - [ ] systick_handler 0x4180
-- [ ] usagefault_handler 0x4184
-- [ ] trap_handler 0x4188
-- [ ] exti0_handler * 8
-
 systick_handler:
         eret
-
 usagefault_handler:
         eret
+trap_handler:
+        eret
+exti0_handler:
+        eret
+
+.text 0x4180
+	j systick_handler
+	j exti0_handler
+	j exti0_handler
+	j exti0_handler
+	j exti0_handler
+	j exti0_handler
+	j exti0_handler
+        j trap_handler
+        j usagefault_handler
         

@@ -68,6 +68,9 @@ always @(*) begin
                 6'b00_1111: result = {immediate, 16'b0}; // lui
                 default: result = 0;
             endcase
+        end 
+        else begin
+            result = 0;
         end
     end
     else begin

@@ -11,10 +11,8 @@ module registers (
     // input move_enable,
     // input move_direction,
     input[31:0] write_val,
-    input[31:0] pc,
     output[31:0] rs_val,
-    output[31:0] rt_val,
-    output[31:0] epc_sim
+    output[31:0] rt_val
 );
 
 reg[31:0] regs[0:31];
