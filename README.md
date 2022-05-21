@@ -53,9 +53,9 @@
 
 ### IO
 - [x] constraints
-- [ ] Seg tubes
-- [ ] switches
-- [ ] UART Download
+- [x] Seg tubes
+- [x] switches
+- [x] UART Download
   
 ## Bonus
 
@@ -81,17 +81,17 @@
 - [x] systick
 - [x] fault
 - [x] trap
-- [ ] external
+- [x] external
 - [x] NVIC, without custom priority...
 
 ### IVT ktext里直接写jump模拟
 - [x] systick_handler
 - [x] usagefault_handler
 - [x] trap_handler
-- [ ] exti0_handler * 6
+- [x] exti0_handler * 6
 
 ### IO
-- [ ] GPIO
+- [x] GPIO
 
 ### Programs (opt)
 - [ ] serial echo server 单独写个模块用来搞时钟？
