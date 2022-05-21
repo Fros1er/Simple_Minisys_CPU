@@ -1,17 +1,17 @@
 `timescale 1ns / 1ps
 
 module cpu_top(
-    input sys_clk, rst_in, start_pg,
-    input rx,
-    output start_pg_led, tx,
+    input sys_clk, rst_in, start_pg, rx,
+    output start_pg_led, program_off_led, rst_led, uart_write_en_led, rx_led, uart_addr_led, tx,
+//    uart_write_inst_led, uart_done_led, 
     inout[15:0] gpio_a_out, gpio_b_out, gpio_c_out, 
-    inout[13:0] gpio_d_out, 
-    inout[7:0] gpio_e_out
+    inout[13:0] gpio_d_out
+   ,  inout[7:0] gpio_e_out
 //    , gpio_f_out
 );
-//    reg sys_clk, rst_in, start_pg;
+//    reg sys_clk, rst_in, start_pg, rx;
 
-    assign start_pg_led = start_pg;
+    
     
     wire rst, clk, nvic_clk, uart_clk, systick_clk, rd_write_enable, rt_write_enable, alu_en, mem_write_en, 
         io_write_en, is_sw, is_io_target, is_usage_fault, curr_gpio_type;
@@ -27,14 +27,23 @@ module cpu_top(
     
     reg[8:0] pending_interrupts;
     reg[15:0] gpio_in_buffers[5:0];
-    reg uart_rst;
+    reg uart_rst, rx_reg, uart_write_en_reg, uart_addr_reg;
     
     wire spg_bufg, uart_clk_o, uart_write_en, uart_done, program_off;
     wire [14:0] uart_addr;
     wire [31:0] uart_data;
+    
+    assign start_pg_led = start_pg;
+    assign program_off_led = program_off;
+    assign rst_led = uart_rst;
+    assign rx_led = rx_reg;
+    assign uart_write_en_led = uart_write_en_reg;
+    assign uart_addr_led = uart_addr_reg;
+//    assign uart_write_inst_led = uart_write_en & !uart_addr[13];
+//    assign uart_done_led = uart_done;
 
     assign rst = rst_in | !uart_rst;
-    assign program_off = uart_rst | (~uart_rst & uart_done);
+    
     
     assign reg_write_val = (opcode == 6'b10_0011) ? mem_io_read_val : 
                           (opcode == 6'b00_0011) ? return_addr : result;
@@ -64,10 +73,18 @@ module cpu_top(
     assign gpio_e_out = gpio_types[4] ? gpio_e : 16'bz;
 //    assign gpio_f_out = gpio_types[5] ? gpio_f : 16'bz;
     
+    
+    cpuclk cd(
+        .clk_in1(sys_clk),
+        .clk(clk),
+        .nvic_clk(nvic_clk),
+        .uart_clk(uart_clk)
+    );
 //    assign nvic_clk = sys_clk;
-   clock_div #(.period(5), .width(4)) cd_a(sys_clk, rst, nvic_clk);
-   clock_div #(.period(2), .width(3)) cd_b(nvic_clk, rst, clk);
-   clock_div #(.period(10), .width(5)) cd_c(sys_clk, rst, uart_clk);
+//        assign uart_clk = sys_clk;
+//   clock_div #(.period(5), .width(4)) cd_a(sys_clk, rst, nvic_clk);
+//   clock_div #(.period(2), .width(3)) cd_b(nvic_clk, rst, clk);
+//   clock_div #(.period(10), .width(5)) cd_c(sys_clk, rst, uart_clk);
    systick_generator systick_gen(clk, rst, systick_clk);
     
 //     wire need_jump, is_eret;
@@ -75,27 +92,27 @@ module cpu_top(
 //     wire[8:0] int_en, arr;
 //     wire[3:0] curr,next;
     ifetch i_fetch(
-       .nvic_clk(nvic_clk),
-       .clk(clk),
-       .rst(rst),
-       .result(result),
-       .pending_interrupts(pending_interrupts),
-       .is_usage_fault(is_usage_fault),
-       .alu_en(alu_en),
-       .alu_type(alu_type), // 1 R 0 I
-       .return_addr(return_addr),
-       .rs(rs),
-       .rt(rt),
-       .rd(rd),
-       .immediate(immediate),
-       .shamt(shamt),
-       .funct(funct),
-       .opcode(opcode),
-       .program_off(program_off),
-      .uart_clk(uart_clk_o),
-      .uart_write_en(uart_write_en & !uart_addr[13]), 
-      .uart_addr(uart_addr),
-      .uart_data(uart_data)
+        .nvic_clk(nvic_clk),
+        .clk(clk),
+        .rst(rst),
+        .result(result),
+        .pending_interrupts(pending_interrupts),
+        .is_usage_fault(is_usage_fault),
+        .alu_en(alu_en),
+        .alu_type(alu_type), // 1 R 0 I
+        .return_addr(return_addr),
+        .rs(rs),
+        .rt(rt),
+        .rd(rd),
+        .immediate(immediate),
+        .shamt(shamt),
+        .funct(funct),
+        .opcode(opcode),
+        .program_off(program_off),
+        .uart_clk(uart_clk_o),
+        .uart_write_en(uart_write_en & !uart_addr[13]), 
+        .uart_addr(uart_addr),
+        .uart_data(uart_data)
 //        ,.pc_sim(pc),.instruction(instruction_sim),.need_exception_jump(need_jump),.target_addr(tgt),.int_en(int_en),.arr(arr),.curr(curr),.next(next),.is_eret(is_eret),.epc0(epc0)
     );
 
@@ -158,10 +175,10 @@ module cpu_top(
        .exti_enable(exti_enable)
     );
     
-    
+    assign program_off = uart_rst | (~uart_rst & uart_done);
     BUFG U1(.I(start_pg), .O(spg_bufg));
     uart_bmpg_0 uart(
-        .upg_clk_i(uart_clk),
+        .upg_clk_i(clk),
         .upg_rst_i(uart_rst),
         .upg_rx_i(rx),
         .upg_clk_o(uart_clk_o),
@@ -178,6 +195,16 @@ module cpu_top(
             uart_rst = 0; 
         if (rst_in) 
             uart_rst = 1; 
+        if (uart_rst) begin
+            rx_reg = 0;
+            uart_write_en_reg = 0;
+            uart_addr_reg = 0;
+        end
+        else begin
+            if (!rx) rx_reg = 1;
+            if (uart_write_en) uart_write_en_reg = 1;
+            if (uart_addr != 0) uart_addr_reg = 1;
+        end
     end
     
      always @(*) begin
@@ -217,11 +244,11 @@ module cpu_top(
             end
             else pending_interrupts[4] <= 0;
 
-            if (gpio_e_out != gpio_in_buffers[4] && exti_enable[4]) begin
-                pending_interrupts[5] <= 1;
-                gpio_in_buffers[4] <= gpio_e_out;
-            end
-            else pending_interrupts[5] <= 0;
+           if (gpio_e_out != gpio_in_buffers[4] && exti_enable[4]) begin
+               pending_interrupts[5] <= 1;
+               gpio_in_buffers[4] <= gpio_e_out;
+           end
+           else pending_interrupts[5] <= 0;
 
             // if (gpio_f_out != gpio_in_buffers[5]) && exti_enable[5] begin
             //     pending_interrupts[6] <= 1;
@@ -235,10 +262,14 @@ module cpu_top(
 //    initial begin 
 //        sys_clk = 0;
 //        rst_in = 1;
-//        start_pg = 0;
+//        start_pg = 1;
+//        rx = 0;
 //        #11 rst_in = 0;
 //    end
     
-//    always #1 sys_clk = ~sys_clk;
+//    always begin
+//        #1 sys_clk = ~sys_clk;
+//        #1 rx = ~rx;
+//    end
     
 endmodule

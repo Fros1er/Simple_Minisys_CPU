@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-// Date        : Thu May 19 22:34:12 2022
+// Date        : Thu May 19 22:34:11 2022
 // Host        : DESKTOP-AK5GC2F running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               D:/code/mips_cpu/mips_cpu.srcs/sources_1/ip/data_memory/data_memory_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top data_memory -prefix
+//               data_memory_ data_memory_sim_netlist.v
 // Design      : data_memory
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -192,7 +192,6 @@ module data_memory
         .web(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_generic_cstr" *) 
 module data_memory_blk_mem_gen_generic_cstr
    (douta,
     clka,
@@ -237,7 +236,6 @@ module data_memory_blk_mem_gen_generic_cstr
         .wea(wea));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module data_memory_blk_mem_gen_prim_width
    (douta,
     clka,
@@ -345,7 +343,6 @@ module data_memory_blk_mem_gen_prim_width__parameterized2
         .wea(wea));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module data_memory_blk_mem_gen_prim_wrapper_init
    (douta,
     clka,
@@ -1313,7 +1310,6 @@ module data_memory_blk_mem_gen_prim_wrapper_init__parameterized2
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_top" *) 
 module data_memory_blk_mem_gen_top
    (douta,
     clka,
@@ -1364,7 +1360,7 @@ endmodule
 (* C_USE_URAM = "0" *) (* C_WEA_WIDTH = "1" *) (* C_WEB_WIDTH = "1" *) 
 (* C_WRITE_DEPTH_A = "4096" *) (* C_WRITE_DEPTH_B = "4096" *) (* C_WRITE_MODE_A = "WRITE_FIRST" *) 
 (* C_WRITE_MODE_B = "WRITE_FIRST" *) (* C_WRITE_WIDTH_A = "32" *) (* C_WRITE_WIDTH_B = "32" *) 
-(* C_XDEVICEFAMILY = "artix7" *) (* ORIG_REF_NAME = "blk_mem_gen_v8_4_1" *) (* downgradeipidentifiedwarnings = "yes" *) 
+(* C_XDEVICEFAMILY = "artix7" *) (* downgradeipidentifiedwarnings = "yes" *) 
 module data_memory_blk_mem_gen_v8_4_1
    (clka,
     rsta,
@@ -1622,7 +1618,6 @@ module data_memory_blk_mem_gen_v8_4_1
         .wea(wea));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_4_1_synth" *) 
 module data_memory_blk_mem_gen_v8_4_1_synth
    (douta,
     clka,
