@@ -21,6 +21,7 @@
     type: .word 0
     nums: .word 0 0
     stage: .word 0
+    palindrome: .word 0
 	
 .text
 start:
@@ -34,6 +35,9 @@ loop: j loop
 	
 systick_handler:
     lw $s0, stage
+    lw $s1, palindrome
+    sll $s1, $s1, 5
+    or $s0, $s0, $s1
     sw $s0, 0($fp)
     ori $s0, $zero, 2
     lw $s1, stage
@@ -203,9 +207,13 @@ update_seg:
 	jr $ra
 	
 update_result:
-    addiu $sp, $sp, -8
+    addiu $sp, $sp, -24
     sw $s0, 0($sp)
     sw $s1, 4($sp)
+    sw $s2, 8($sp)
+    sw $s3, 12($sp)
+    sw $s4, 16($sp)
+    sw $s5, 20($sp)
 
 	ori $s0, $zero, 2
     lw $s1, stage
@@ -234,6 +242,31 @@ res_type_0:
     lw $s0, nums
     sw $s0, seg_num
     # get_palindrome
+    ori $s1, $zero, 0
+    or $s2, $zero, $s0
+res_cnt_digit:
+    beq $s2, $zero, res_cnt_digit_end
+    addi $s1, $s1, 1
+    srl $s2, $s2, 1
+    j res_cnt_digit
+res_cnt_digit_end:
+    srl $s5, $s1, 1
+    ori $s2, $zero, 0
+res_check_begin:
+    beq $s5, $s2, res_check_success
+    srlv $s3, $s0, $s2
+    andi $s3, $s3, 1
+    sub $s4, $s1, $s2
+    subi $s4, $s4, 1
+    srlv $s4, $s0, $s4
+    andi $s4, $s4, 1
+    addi $s2, $s2, 1
+    beq $s3, $s4, res_check_begin
+    sw $zero, palindrome #fail
+    j res_end
+res_check_success:
+    ori $s0, $zero, 1
+    sw $s0, palindrome
     j res_end
 res_type_1:
     j res_end
@@ -276,5 +309,9 @@ res_type_7:
 res_end:
     lw $s0, 0($sp)
     lw $s1, 4($sp)
-    addiu $sp, $sp, 8
+    lw $s2, 8($sp)
+    lw $s3, 12($sp)
+    lw $s4, 16($sp)
+    lw $s5, 20($sp)
+    addiu $sp, $sp, 24
     jr $ra
