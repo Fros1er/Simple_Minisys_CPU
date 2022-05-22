@@ -2,16 +2,18 @@
 
 module cpu_top(
     input sys_clk, rst_in, start_pg, rx,
-    output start_pg_led, program_off_led, rst_led, uart_write_en_led, rx_led, uart_addr_led, tx,
+    input [3:0] keyboard_row,
+    output [3:0] keyboard_col,
+    output start_pg_led, program_off_led, rst_led, uart_write_en_led, rx_led, tx,
 //    uart_write_inst_led, uart_done_led, 
     inout[15:0] gpio_a_out, gpio_b_out, gpio_c_out, 
-    inout[13:0] gpio_d_out
-   ,  inout[7:0] gpio_e_out
-//    , gpio_f_out
+    inout[4:0] gpio_d_out
+//   ,inout [3:0] gpio_e_out
+//    , inout[2:0] gpio_f_out
 );
 //    reg sys_clk, rst_in, start_pg, rx;
 
-    
+    wire [3:0] gpio_e_out;
     
     wire rst, clk, nvic_clk, uart_clk, systick_clk, rd_write_enable, rt_write_enable, alu_en, mem_write_en, 
         io_write_en, is_sw, is_io_target, is_usage_fault, curr_gpio_type;
@@ -27,7 +29,7 @@ module cpu_top(
     
     reg[8:0] pending_interrupts;
     reg[15:0] gpio_in_buffers[5:0];
-    reg uart_rst, rx_reg, uart_write_en_reg, uart_addr_reg;
+    reg uart_rst, rx_reg, uart_write_en_reg;
     
     wire spg_bufg, uart_clk_o, uart_write_en, uart_done, program_off;
     wire [14:0] uart_addr;
@@ -38,7 +40,6 @@ module cpu_top(
     assign rst_led = uart_rst;
     assign rx_led = rx_reg;
     assign uart_write_en_led = uart_write_en_reg;
-    assign uart_addr_led = uart_addr_reg;
 //    assign uart_write_inst_led = uart_write_en & !uart_addr[13];
 //    assign uart_done_led = uart_done;
 
@@ -70,7 +71,7 @@ module cpu_top(
     assign gpio_b_out = gpio_types[1] ? gpio_b : 16'bz;
     assign gpio_c_out = gpio_types[2] ? gpio_c : 16'bz;
     assign gpio_d_out = gpio_types[3] ? gpio_d : 16'bz;
-    assign gpio_e_out = gpio_types[4] ? gpio_e : 16'bz;
+//    assign gpio_e_out = gpio_types[4] ? gpio_e : 16'bz;
 //    assign gpio_f_out = gpio_types[5] ? gpio_f : 16'bz;
     
     
@@ -175,6 +176,14 @@ module cpu_top(
        .exti_enable(exti_enable)
     );
     
+    keyboard kbd(
+        .clk(sys_clk),
+        .rst(rst),
+        .row(keyboard_row),
+        .col(keyboard_col),
+        .keyboard_val(gpio_e_out)
+    );
+    
     assign program_off = uart_rst | (~uart_rst & uart_done);
     BUFG U1(.I(start_pg), .O(spg_bufg));
     uart_bmpg_0 uart(
@@ -198,12 +207,10 @@ module cpu_top(
         if (uart_rst) begin
             rx_reg = 0;
             uart_write_en_reg = 0;
-            uart_addr_reg = 0;
         end
         else begin
             if (!rx) rx_reg = 1;
             if (uart_write_en) uart_write_en_reg = 1;
-            if (uart_addr != 0) uart_addr_reg = 1;
         end
     end
     
@@ -250,11 +257,11 @@ module cpu_top(
            end
            else pending_interrupts[5] <= 0;
 
-            // if (gpio_f_out != gpio_in_buffers[5]) && exti_enable[5] begin
-            //     pending_interrupts[6] <= 1;
-            //     gpio_in_buffers[5] <= gpio_f_out;
-            // end
-            // else pending_interrupts[6] <= 0;
+//             if (gpio_f_out != gpio_in_buffers[5] && exti_enable[5]) begin
+//                 pending_interrupts[6] <= 1;
+//                 gpio_in_buffers[5] <= gpio_f_out;
+//             end
+//             else pending_interrupts[6] <= 0;
         end
      end
     

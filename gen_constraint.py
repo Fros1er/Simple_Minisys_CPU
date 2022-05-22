@@ -1,9 +1,11 @@
 # pins = "K17 L13 M13 K14 K13 M20 N20 N19 M17 M16 M15 K16 L16 L15 L14 J17"
-pins = "Y9 W9 Y7 Y8 AB8 AA8 V8 V9 AB6 AB7 V7 AA6 Y6 T6 R6 V5"
+# pins = "Y9 W9 Y7 Y8 AB8 AA8 V8 V9 AB6 AB7 V7 AA6 Y6 T6 R6 V5"
 # pins = "A18 A20 B20 E18 F18 D19 E19 C19 F15 F13 F14 F16 E17 C14 C15 E13"
 # pins = "N2 M6 M5 P6 N5 J16 K18 K19"
+# pins = "G21 G22 F21"
+pins = "R1 P1 P5 P4 P2"
 
-name = 'b'
+name = 'd'
 
 num = 0
 for pin in pins.split(" "):

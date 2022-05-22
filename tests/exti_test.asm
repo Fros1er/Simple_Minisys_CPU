@@ -6,38 +6,28 @@
 
 .text 0x0000
 start:
-	lw $s6, io_start
-	
-	addi $s6, $s6, 32 # set gpio_out: 000001
-	ori $s7, $zero, 1
-	sw $s7, 0($s6)
-	
-	addi $s6, $s6, 4 # set exti: 001010
-	ori $s7, $zero, 10
-	sw $s7, 0($s6)
-	
-	ori $s7, $zero, 1 # set gpioA: 0x1
-	lw $s6, io_start
-	sw $s7, 0($s6)
-	sw $s7, flag
-
+	lw	$fp, io_start
+	ori	$s7, $zero, 1 # set gpio_out: 000001
+	sw	$s7, 32($fp)
+	ori 	$s7, $zero, 10 # set exti: 001010
+	sw 	$s7, 36($fp)
+	ori 	$s7, $zero, 1 # set gpioA: 0x1
+	sw 	$s7, 0($fp)
+	sw 	$s7, flag
 loop:  j loop # while 1
 
 systick_handler:
-	lw $s7, io_start
-	lw $s0, cnt #cnt++
-	addi $s0, $s0, 1
-	sw $s0, cnt
-
-	ori $s1, $zero, 500 # if (cnt == 500)
-	bne $s1, $s0, after_check
-		sw $zero, cnt # cnt = 0
-
-		lw $s2, flag # flag ^= 0b10
-		xori $s2, $s2, 2
-		sw $s2, flag
-		
-		sw $s2, 0($s7) # set gpioA: flag
+	lw	$s0, cnt
+	addi	$s0, $s0, 1
+	sw 	$s0, cnt
+	ori	$s1, $zero, 500
+	bne	$s1, $s0, after_check
+	# if (t0 == 1000)
+	sw 	$zero, cnt
+	lw	$s2, flag
+	xori 	$s2, $s2, 2
+	sw 	$s2, flag
+	sw 	$s2, 0($fp)
 after_check:
 	eret
 usagefault_handler:
@@ -47,9 +37,8 @@ trap_handler:
 exti0_handler:
 	eret
 exti1_handler:
-	lw $s6, io_start
-	lw $s5, 4($s6) # s5 = gpioB
-	sw $s5, $s6 # gpioA = gpioB
+	lw $s5, 4($fp) # s5 = gpioB
+	sw $s5, 0($fp) # gpioA = gpioB
 	eret
 exti3_handler:
 	eret
